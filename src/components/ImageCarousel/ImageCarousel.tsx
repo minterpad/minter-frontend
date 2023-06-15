@@ -3,6 +3,7 @@ import { cn } from '@bem-react/classname';
 import './ImageCarousel.scss';
 import { Button } from 'components';
 import { Icons } from 'assets';
+import { Link } from 'react-router-dom';
 
 const CnImageCarousel = cn('imageCarousel');
 
@@ -14,9 +15,11 @@ export const ImageCarousel: React.FC<IImageCarouselProps> = () => {
             <div className={CnImageCarousel('action', { left: true })}>
                 <Icons.AngleLeft />
             </div>
+
             <ImageCarouselItem />
 
             <ImageCarouselProgressBar />
+
             <div className={CnImageCarousel('action', { right: true })}>
                 <Icons.AngleRight />
             </div>
@@ -80,9 +83,11 @@ const ImageCarouselItem = () => {
                     </div>
 
                     <div className={CnImageCarouselItem('action')}>
-                        <Button view="orange" size="m">
-                            Mint
-                        </Button>
+                        <Link to="/mint">
+                            <Button view="orange" size="m">
+                                Mint
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

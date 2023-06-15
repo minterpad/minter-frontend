@@ -1,8 +1,9 @@
 import { Home, Mint, TransactionSuccess } from 'pages';
-import { BrowserRouter } from 'react-router-dom';
-import './App.scss';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Modal } from 'components';
 import { DynamicContextProvider } from '@dynamic-labs/sdk-react';
+
+import './App.scss';
 
 export const App = () => {
     return (
@@ -13,12 +14,21 @@ export const App = () => {
                 enableVisitTrackingOnConnectOnly: false,
             }}
         >
-            <BrowserRouter>
-                <Modal />
-                <div className="App">
-                    <TransactionSuccess />
-                </div>
-            </BrowserRouter>
+            <div className="App">
+                <BrowserRouter>
+                    <Modal />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+
+                        <Route path="/mint" element={<Mint />} />
+
+                        <Route
+                            path="/success"
+                            element={<TransactionSuccess />}
+                        />
+                    </Routes>
+                </BrowserRouter>
+            </div>
         </DynamicContextProvider>
     );
 };

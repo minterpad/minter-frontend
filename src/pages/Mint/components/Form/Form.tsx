@@ -2,6 +2,7 @@ import { cn } from '@bem-react/classname';
 
 import './Form.scss';
 import { Button, Counter, Select } from 'components';
+import { Link } from 'react-router-dom';
 
 const CnForm = cn('form');
 
@@ -95,9 +96,11 @@ export const Form: React.FC<IFormProps> = () => {
                 </div>
 
                 <div className={CnForm('action')}>
-                    <Button view="orange" size="l">
-                        Mint
-                    </Button>
+                    <Link to="/success">
+                        <Button view="orange" size="l">
+                            Mint
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>

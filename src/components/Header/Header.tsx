@@ -16,8 +16,8 @@ export const Header: React.FC<IHeaderProps> = () => {
             </div>
             <div className={CnHeader('navigation')}>
                 <div className={CnHeader('navigation-item')}>Collections</div>
-                <div className={CnHeader('navigation-item')}>Collections</div>
-                <div className={CnHeader('navigation-item')}>Collections</div>
+                <div className={CnHeader('navigation-item')}>Inscriptions</div>
+                <div className={CnHeader('navigation-item')}>Mint Calendar</div>
             </div>
             <div className={CnHeader('wallet')}>
                 <Wallet />

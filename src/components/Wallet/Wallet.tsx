@@ -1,6 +1,7 @@
 import { cn } from '@bem-react/classname';
 import { Button } from 'components';
 import { Icons } from 'assets';
+import { DynamicWidget } from '@dynamic-labs/sdk-react';
 
 import './Wallet.scss';
 
@@ -11,7 +12,8 @@ interface IWalletProps {}
 export const Wallet: React.FC<IWalletProps> = () => {
     return (
         <div className={CnWallet('wrapper')}>
-            <div className={CnWallet()}>
+            <DynamicWidget />
+            {/* <div className={CnWallet()}>
                 <div className={CnWallet('icons')}>
                     <Icons.Bitcoin />
                     <Icons.Metamask />
@@ -21,12 +23,12 @@ export const Wallet: React.FC<IWalletProps> = () => {
                     <Icons.AngleDown />
                 </div>
             </div>
-            {/* <div className={CnWallet('dropdown')}>
+            <div className={CnWallet('dropdown')}>
                 <BitcoinWallet />
 
                 <EvmWallet />
-            </div> */}
-            {/* <Button view="dark" size="m">
+            </div>
+            <Button view="dark" size="m">
                 Connect wallets
             </Button> */}
         </div>

@@ -12,6 +12,14 @@
         width: 240px;
     }
 
+    &-wallet {
+        width: 240px;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
     &-navigation {
         display: flex;
         align-items: center;
