@@ -1,0 +1,143 @@
+.info {
+    width: 570px;
+    padding: 32px;
+
+    background: #0E0E0E;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+
+    &-nft {
+        display: flex;
+        align-items: center;
+
+        margin-bottom: 24px;
+
+        &-icon {
+            display: flex;
+            align-items: center;
+
+            margin-right: 16px;
+        }
+
+        &-name {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+
+            color: #FFFFFF;
+        }
+    }
+
+    &-collection {
+        margin-bottom: 24px;
+
+        &-label {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+
+            color: rgba(255, 255, 255, 0.4);
+
+            margin-bottom: 8px;
+        }
+
+        &-link {
+            text-decoration: underline;
+
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 22px;
+
+            color: #FFFFFF;
+        }
+    }
+
+    &-stat {
+        padding: 24px 0px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        margin-bottom: 24px;
+
+        &-item {
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+        }
+
+        &-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 4px;
+        }
+
+        &-name {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 22px;
+
+            color: rgba(255, 255, 255, 0.4);
+
+            &_total {
+                color: #FFFFFF;
+            }
+        }
+
+        &-price {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 22px;
+
+            color: #FFFFFF;
+        }
+
+        &-stablePrice {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+
+            text-align: right;
+
+            color: rgba(255, 255, 255, 0.4);
+        }
+    }
+
+    &-footer {
+        &-item {
+
+            &:not(:last-child) {
+                margin-bottom: 24px;
+            }
+            
+            &-label {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 17px;
+
+                color: rgba(255, 255, 255, 0.4);
+
+                margin-bottom: 8px;
+            }
+
+            &-value {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 22px;
+
+                color: #FFFFFF;
+
+                word-break: break-all;
+            }
+        }
+    }
+}

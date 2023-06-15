@@ -11,7 +11,9 @@ interface IHeaderProps {}
 export const Header: React.FC<IHeaderProps> = () => {
     return (
         <div className={CnHeader()}>
-            <Icons.Logo />
+            <div className={CnHeader('logo')}>
+                <Icons.Logo />
+            </div>
             <div className={CnHeader('navigation')}>
                 <div className={CnHeader('navigation-item')}>Collections</div>
                 <div className={CnHeader('navigation-item')}>Collections</div>

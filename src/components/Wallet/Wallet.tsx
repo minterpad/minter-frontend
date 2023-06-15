@@ -21,11 +21,11 @@ export const Wallet: React.FC<IWalletProps> = () => {
                     <Icons.AngleDown />
                 </div>
             </div>
-            <div className={CnWallet('dropdown')}>
+            {/* <div className={CnWallet('dropdown')}>
                 <BitcoinWallet />
 
                 <EvmWallet />
-            </div>
+            </div> */}
             {/* <Button view="dark" size="m">
                 Connect wallets
             </Button> */}

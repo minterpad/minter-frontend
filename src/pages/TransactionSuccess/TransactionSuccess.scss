@@ -1,0 +1,32 @@
+.transactionSuccess {
+    margin-bottom: 100px;
+    
+    &-title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+        text-transform: uppercase;
+
+        color: #FFFFFF;
+
+        margin-bottom: 24px;
+    }
+
+    &-content {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        
+        &-left {
+            width: 400px;
+            margin-right: 24px;
+
+            & .extensions {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

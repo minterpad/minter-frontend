@@ -7,6 +7,7 @@ import { ReactComponent as Minus } from './icons/minus.svg';
 import { ReactComponent as Close } from './icons/close.svg';
 import { ReactComponent as Copy } from './icons/copy.svg';
 import { ReactComponent as Check } from './icons/check.svg';
+import { ReactComponent as ArrowRight } from './icons/arrow-right.svg';
 
 import { ReactComponent as Ethereum } from './networks/ethereum.svg';
 import { ReactComponent as Aptos } from './networks/aptos.svg';
@@ -23,6 +24,7 @@ import { ReactComponent as Pontem } from './wallets/pontem.svg';
 import { ReactComponent as Rise } from './wallets/rise.svg';
 import { ReactComponent as RiseBlack } from './wallets/rise-black.svg';
 import { ReactComponent as WalletConnect } from './wallets/wallet-connect.svg';
+
 import petra from './wallets/petra.png';
 
 const Petra: React.FC = () => {
@@ -54,4 +56,5 @@ export const Icons = {
     Aptos,
     Sui,
     Check,
+    ArrowRight,
 };

@@ -1,4 +1,4 @@
-import { Home, Mint } from 'pages';
+import { Home, Mint, TransactionSuccess } from 'pages';
 import { BrowserRouter } from 'react-router-dom';
 import './App.scss';
 import { Modal } from 'components';
@@ -8,7 +8,7 @@ export const App = () => {
         <BrowserRouter>
             <Modal />
             <div className="App">
-                <Mint />
+                <TransactionSuccess />
             </div>
         </BrowserRouter>
     );

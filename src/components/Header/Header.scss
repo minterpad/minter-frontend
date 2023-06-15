@@ -5,6 +5,13 @@
     align-items: center;
     justify-content: space-between;
 
+    &-logo {
+        display: flex;
+        align-items: center;
+        
+        width: 240px;
+    }
+
     &-navigation {
         display: flex;
         align-items: center;

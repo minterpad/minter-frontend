@@ -1,0 +1,44 @@
+.address {
+    background: #1D1D1D;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+
+    padding: 20px 16px;
+
+    &-input {
+        margin-bottom: 16px;
+        
+        & .input {
+            width: 100%;
+        }
+    }
+
+    &-action {
+        & .button {
+            width: 100%;
+        }
+    }
+
+    &-title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #FFFFFF;
+
+        margin-bottom: 16px;
+    }
+
+    &-description {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+
+        color: rgba(255, 255, 255, 0.6);
+
+        margin-bottom: 16px;
+    }
+}
