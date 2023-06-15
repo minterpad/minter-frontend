@@ -1,0 +1,40 @@
+.banner {
+    position: relative;
+
+    width: 100%;
+    height: 280px;
+
+    background: #020202;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    background: url("../../../../assets/images/banner.svg");
+    background-position: center center;
+    background-size: cover;
+
+    &-image {
+        position: absolute;
+
+        left: 20px;
+    }
+
+    &-title {
+        font-family: 'Videotype';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 50px;
+        line-height: 188px;
+        /* identical to box height, or 376% */
+
+        text-align: center;
+        letter-spacing: -0.05em;
+
+        color: #ED5729;
+
+        text-shadow: 0px 0px 15px #ED5729;
+    }
+}

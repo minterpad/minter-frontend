@@ -1,0 +1,78 @@
+.collections {
+    &-title {
+        font-family: 'Proto Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 31px;
+
+        color: #FFFFFF;
+
+        margin-bottom: 20px;
+    }
+
+    &-table {
+        width: 100%;
+        
+        &-name {
+            display: flex;
+            align-items: center;
+
+            & svg {
+                margin-right: 16px;
+            }
+        }
+
+        &-price {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        &-token {
+            margin-left: 5px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        & thead {
+            font-family: 'Proto Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+
+            color: rgba(255, 255, 255, 0.6);
+
+            text-align: left;
+
+            & th {
+                text-align: right;
+                padding-bottom: 24px;
+
+                &:nth-child(1) {
+                    text-align: left;
+                }
+            }
+        }
+
+        & tbody {
+            font-family: 'Proto Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+
+            color: #FFFFFF;
+
+            & td {
+                padding-bottom: 10px;
+
+                text-align: right;
+                
+                &:nth-child(1) {
+                    width: 400px;
+                }
+            }
+        }
+    }
+}

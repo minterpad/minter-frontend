@@ -1,0 +1,48 @@
+.timer {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &-label {
+        font-family: 'Videotype';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+
+        color: #FF7A00;
+    }
+
+    &-value {
+        width: 196px;
+        height: 69px;
+        
+        background: #0E0E0E;
+        border: 1px solid #FF7A00;
+        border-radius: 16px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-family: 'Videotype';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 39px;
+        text-align: center;
+
+        color: #FF7A00;
+
+        margin-bottom: 16px;
+    }
+}

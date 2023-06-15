@@ -1,0 +1,132 @@
+.provideAddressModal {
+    max-width: 400px;
+
+    & .button {
+        width: 100%;
+    }
+
+    &-title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+
+        text-align: center;
+        text-transform: uppercase;
+
+        color: #FFFFFF;
+
+        margin-bottom: 20px;
+    }
+
+    &-price {
+        font-style: normal;
+        font-weight: 400;
+
+        margin-bottom: 16px;
+
+        &-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 4px;
+        }
+
+        &-chain {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+
+            text-align: right;
+
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        &-title {
+            
+            font-size: 20px;
+            line-height: 24px;
+
+            color: #FFFFFF;
+        }
+
+        &-value {
+            font-size: 24px;
+            line-height: 29px;
+
+            text-align: right;
+
+            color: #FFFFFF;
+        }
+    }
+
+    &-radio {
+        background: #1D1D1D;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+
+        overflow: hidden;
+
+        margin-bottom: 24px;
+
+        &-item {
+            padding: 20px 16px;
+
+            &:first-child {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            & .input {
+                width: 100%;
+            }
+
+            &-action {
+                display: flex;
+                align-items: center;
+
+                margin-bottom: 16px;
+
+                &-icon {
+                    cursor: pointer;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 50%;
+
+                    background: #1D1D1D;
+                    border: 2px solid rgba(255, 255, 255, 0.4);
+
+                    margin-right: 8px;
+                }
+
+                &-text {
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                    text-transform: uppercase;
+
+                    color: #FFFFFF;
+                }
+            }
+
+            &-description {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 14px;
+
+                color: rgba(255, 255, 255, 0.6);
+
+                margin-bottom: 12px;
+            }
+        }
+    }
+}

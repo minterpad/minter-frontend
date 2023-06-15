@@ -1,0 +1,36 @@
+.input {
+    cursor: pointer;
+    
+    outline: none;
+    border: none;
+
+    font-family: 'Proto Mono';
+
+    &_view {
+        &_dark {
+            font-style: normal;
+            font-weight: 400;
+
+            background: #0E0E0E;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 7px;
+
+            color: rgba(255, 255, 255, 1);
+
+            &::placeholder {
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.4);
+            }
+        }
+
+    }
+
+    &_size {
+        &_l {
+            padding: 17px 12px;
+
+            font-size: 12px;
+            line-height: 14px;
+        }
+    }
+}

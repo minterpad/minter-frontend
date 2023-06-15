@@ -1,0 +1,28 @@
+.header {
+    padding: 32px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-navigation {
+        display: flex;
+        align-items: center;
+
+        &-item {
+            font-family: 'Proto Mono';
+            
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px;
+
+            color: #FFFFFF;
+
+            &:not(:last-child) {
+                margin-right: 40px;
+            }
+        }
+    }
+
+}

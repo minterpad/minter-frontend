@@ -1,0 +1,122 @@
+.imageCarousel {
+    position: relative;
+
+    width: 100%;
+    height: 560px;
+
+    background: #0E0E0E;
+    border: 1px solid #FFFFFF;
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &-action {
+        z-index: 100;
+
+        position: absolute;
+
+        display: flex;
+        cursor: pointer;
+
+        &_left {
+            left: 40px;
+        }
+
+        &_right {
+            right: 40px;
+        }
+    }
+
+    &ProgressBar {
+        position: absolute;
+        bottom: 64px;
+
+        width: 360px;
+        height: 4px;
+
+        background: #797979;
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+
+        &-badge {
+            cursor: pointer;
+
+            width: 60px;
+            height: 6px;
+
+            background: #FFFFFF;
+            border-radius: 20px;
+        }
+    }
+
+    &Item {
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+
+        background-image: url("../../assets/images/carousel.svg");
+        background-size: cover;
+        background-position: center center;
+
+        &-contnet {
+            display: flex;
+            align-items: center;
+
+            margin-bottom: 64px;
+        }
+
+        &-image {
+            margin-right: 64px;
+        }
+
+        &-info {
+            max-width: 460px;
+        }
+        
+        &-title {
+            font-family: 'PixdorTwo';
+
+            font-style: normal;
+            font-weight: 500;
+            font-size: 48px;
+            line-height: 52px;
+
+            color: #fff;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        &-description {
+            font-family: 'Proto Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+
+            text-transform: uppercase;
+
+            color: #FFFFFF;
+
+            margin-bottom: 32px;
+        }
+    }
+}

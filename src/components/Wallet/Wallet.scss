@@ -1,0 +1,117 @@
+.wallet {
+    position: relative;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #1D1D1D;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+
+    padding: 8px;
+
+    width: 240px;
+
+    &-dropdown {
+        z-index: 1;
+        position: absolute;
+
+        width: 240px;
+
+        top: 70px;
+
+        background: #1D1D1D;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 5px;
+
+        &-item {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+            padding: 16px 4px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &-left {
+                display: flex;
+                align-items: center;
+            }
+
+            &-icon {
+                display: flex;
+
+                margin-right: 8px;
+            }
+
+            &-address {
+                font-family: "Roboto";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 14px;
+
+                color: #FFFFFF;
+            }
+
+            &-actions {
+                display: flex;
+                align-items: center;
+
+                & svg {
+                    cursor: pointer;
+
+                    &:first-child {
+                        margin-right: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    &-label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+
+        color: #FFFFFF;
+    }
+
+    &-icons {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        margin-right: 20px;
+
+        & svg {
+            &:first-child {
+                z-index: 1;
+            }
+
+            &:nth-child(2) {
+                position: absolute;
+                left: 15px;
+                z-index: 0;
+            }
+        }        
+    }
+
+    &-action {
+        display: flex;
+
+        margin-left: 12px;
+    }
+}

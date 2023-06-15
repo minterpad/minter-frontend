@@ -1,0 +1,91 @@
+.cohorts {
+    padding: 40px 0px;
+
+    &-title {
+        font-family: 'Proto Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 31px;
+
+        color: #FFFFFF;
+
+        margin-bottom: 20px;
+    }
+
+    &-table {
+        width: 100%;
+        
+        &-name {
+            display: flex;
+            align-items: center;
+
+            & svg {
+                margin-right: 16px;
+            }
+        }
+
+        &-token {
+            margin-left: 5px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        &-active {
+            font-family: 'Videotype';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            display: flex;
+            align-items: center;
+
+            color: #FF7A00;
+
+            margin-left: 16px;
+        }
+
+        & thead {
+            font-family: 'Proto Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+
+            color: rgba(255, 255, 255, 0.6);
+
+            & th {
+                text-align: left;
+                padding-bottom: 12px;
+
+                &:last-child {
+                    text-align: right;
+                }
+            }
+        }
+
+        & tbody {
+            font-family: 'Proto Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+
+            color: #FFFFFF;
+
+            & tr {
+                border: 1px solid #fff;
+            }
+
+            & td {
+                padding-top: 12px;
+                padding-bottom: 12px;
+
+                text-align: left;
+                
+                &:last-child {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,175 @@
+
+.connectWalletModal-wallets {
+    height: 70vh;
+
+    overflow: auto;
+
+    padding-right: 24px;
+    margin-right: -24px;
+
+    color: #fff;
+}
+
+.connectWalletModal-wallets-grid {
+    display: grid;
+    grid-template-columns: 126px 126px 126px 126px;
+
+    gap: 0px 16px;
+}
+
+.connectWalletModal-wallets::-webkit-scrollbar {
+    width: 1px;
+}
+.connectWalletModal-wallets::-webkit-scrollbar-thumb {
+    background: rgb(153, 154, 154);
+}
+
+.connectWalletModal-wallets::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.connectWalletModal-wallet {
+
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+
+    width: 126px;
+    padding: 16px 10px;
+    
+    background: #1D1D1D;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+
+    margin-bottom: 16px;
+
+    cursor: pointer;
+}
+
+.connectWalletModal-wallet:hover {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.connectWalletModal-wallet-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 56px;
+    width: 56px;
+    border-radius: 8px;
+
+    margin-bottom: 12px;
+}
+
+.connectWalletModal-wallet-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.connectWalletModal-wallet-icon img {
+    width: 32px;
+    height: 32px;
+}
+
+.connectWalletModal-wallet-title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #FFFFFF;
+}
+
+.connectWalletModal-title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
+.connectWalletModal-subtitle {
+    width: 100%;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+
+    margin-bottom: 16px;
+}
+
+.connectWalletModal-type-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: 24px;
+}
+
+.connectWalletModal-type {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    background: #1D1D1D;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+
+    padding: 8px 12px;
+
+    margin-right: 16px;
+}
+
+.connectWalletModal-type_selected {
+    border: 1px solid #FF7A00;
+}
+
+.connectWalletModal-type-title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #FFFFFF;
+}
+
+.connectWalletModal-type-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    height: 32px;
+    
+    margin-right: 4px;
+}
+
+.connectWalletModal-type-icon svg, .connectWalletModal-type-icon img {
+    width: 32px;
+    height: 32px;
+}
+
+@media screen and (max-width: 500px) {
+    .connectWalletModal {
+        height: 100%;
+    }
+
+    .connectWalletModal-wallets {
+        height: unset;
+    }
+    
+    .connectWalletModal-wallets .connectWalletModal-wallet:last-child {
+        margin-bottom: 100px;
+    }
+}
