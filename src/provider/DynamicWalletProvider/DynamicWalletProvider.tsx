@@ -1,10 +1,7 @@
-import { Home, Mint, TransactionSuccess } from 'pages';
-import { BrowserRouter } from 'react-router-dom';
-import './App.scss';
-import { Modal } from 'components';
+import { FC } from 'react';
 import { DynamicContextProvider } from '@dynamic-labs/sdk-react';
 
-export const App = () => {
+export const DynamicWalletProvider: FC<{ children?: any }> = ({ children }) => {
     return (
         <DynamicContextProvider
             settings={{
@@ -13,12 +10,7 @@ export const App = () => {
                 enableVisitTrackingOnConnectOnly: false,
             }}
         >
-            <BrowserRouter>
-                <Modal />
-                <div className="App">
-                    <TransactionSuccess />
-                </div>
-            </BrowserRouter>
+            {children}
         </DynamicContextProvider>
     );
 };

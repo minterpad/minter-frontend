@@ -13,6 +13,7 @@ import {
     walletTypes,
 } from './ConnectWalletModal.constants';
 import { WalletTypes } from 'types/enums';
+import { useDynamicContext } from '@dynamic-labs/sdk-react';
 
 import './ConnectWalletModal.scss';
 
@@ -22,6 +23,9 @@ export const ConnectWalletModal = () => {
     const { search, state } = useLocation();
     const navigate = useNavigate();
     const isShow = useMemo(() => search.includes('connectWallet'), [search]);
+    const { wallets: dynamicWallets } = useDynamicContext();
+
+    console.log(dynamicWallets);
 
     const stateWalletType = useMemo(() => {
         console.log(state);
