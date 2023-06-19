@@ -22,7 +22,7 @@ export const Cohorts: React.FC<ICohortsProps> = () => {
                 </thead>
 
                 <tbody>
-                    <tr>
+                    <tr className={CnCohorts('table-tractive')}>
                         <td>
                             <div className={CnCohorts('table-name')}>
                                 OG

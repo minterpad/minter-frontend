@@ -72,10 +72,10 @@ export const Extensions: FC = () => {
                                 1. Install Chrome extension
                             </div>
                             <div className={CnExtensions('list-item')}>
-                                2. Install Chrome extension
+                                2. Generate seed phrase
                             </div>
                             <div className={CnExtensions('list-item')}>
-                                3. Install Chrome extension
+                                3. Copy the address
                             </div>
                         </div>
                         <div className={CnExtensions('action')}>
@@ -141,10 +141,10 @@ export const Extensions: FC = () => {
                                 1. Install Chrome extension
                             </div>
                             <div className={CnExtensions('list-item')}>
-                                2. Install Chrome extension
+                                2. Generate seed phrase
                             </div>
                             <div className={CnExtensions('list-item')}>
-                                3. Install Chrome extension
+                                3. Copy the address
                             </div>
                         </div>
                         <div className={CnExtensions('action')}>

@@ -5,6 +5,7 @@ import { Icons } from 'assets';
 import { Timer } from 'components';
 
 import './Mint.scss';
+import { FC, memo, useCallback, useState } from 'react';
 
 const CnMint = cn('mint');
 
@@ -60,16 +61,7 @@ export const Mint: React.FC<IMintProps> = () => {
                 <div className={CnMint('info')}>
                     <div className={CnMint('title')}>Minter WL PASS</div>
 
-                    <div className={CnMint('description')}>
-                        <div className={CnMint('description-text')}>
-                            Minter WL Passes comprises a series of Ordinals,
-                            with the initial batch consisting of 500. This first
-                            batch signifies the introduction of Minter Testnet.
-                        </div>
-                        <div className={CnMint('description-action')}>
-                            see more <Icons.AngleDown />
-                        </div>
-                    </div>
+                    <MintDropdown />
 
                     <div className={CnMint('stat')}>
                         <div className={CnMint('stat-item')}>
@@ -104,3 +96,34 @@ export const Mint: React.FC<IMintProps> = () => {
         </PageLayout>
     );
 };
+
+const MintDropdown: FC = memo(() => {
+    const [isDropdown, setIsDropdownShow] = useState(false);
+
+    const isDropdownShowChangeCallback = useCallback(() => {
+        setIsDropdownShow((prev) => !prev);
+    }, []);
+
+    return (
+        <div className={CnMint('description')}>
+            <div className={CnMint('description-text', { show: isDropdown })}>
+                Minter WL Passes comprises a series of Ordinals, with the
+                initial batch consisting of 500. This first batch signifies the
+                introduction of Minter Testnet. The distribution of these WL
+                Passes Ordinals to the Minter community will be done through a
+                raffle, allowing all participants a chance to acquire them.
+                <br />
+                <br />
+                As the name implies, these Ordinals hold symbolic significance,
+                and their holders will assume a vital role in the Minter world,
+                forming the cornerstone of our forthcoming community.
+            </div>
+            <div
+                onClick={isDropdownShowChangeCallback}
+                className={CnMint('description-action', { show: isDropdown })}
+            >
+                {isDropdown ? 'Hide' : 'See more'} <Icons.AngleDown />
+            </div>
+        </div>
+    );
+});

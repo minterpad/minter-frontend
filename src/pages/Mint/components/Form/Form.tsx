@@ -3,26 +3,76 @@ import { cn } from '@bem-react/classname';
 import './Form.scss';
 import { Button, Counter, Select } from 'components';
 import { Link } from 'react-router-dom';
+import { Icons } from 'assets';
+import { useCallback, useState } from 'react';
 
 const CnForm = cn('form');
 
 interface IFormProps {}
 
 export const Form: React.FC<IFormProps> = () => {
+    const [mintCount, setMintCount] = useState(1);
+
+    const mintCountChangeCallback = useCallback((value: number) => {
+        setMintCount(value);
+    }, []);
+
     return (
         <div className={CnForm()}>
             <div className={CnForm('head')}>
                 <div className={CnForm('title')}>Select Token & Network</div>
 
                 <div className={CnForm('select')}>
-                    <Select />
-                    <Select />
+                    <Select
+                        selectedItem={{
+                            icon: <Icons.Ethereum />,
+                            title: 'Ethereum',
+                        }}
+                        items={[
+                            {
+                                icon: <Icons.Aptos />,
+                                title: 'Aptos',
+                            },
+                            {
+                                icon: <Icons.Sui />,
+                                title: 'Sui',
+                            },
+                            {
+                                icon: <Icons.Ethereum />,
+                                title: 'Ethereum',
+                            },
+                        ]}
+                    />
+                    <Select
+                        selectedItem={{
+                            icon: <Icons.Ethereum />,
+                            title: 'Ethereum',
+                        }}
+                        items={[
+                            {
+                                icon: <Icons.Aptos />,
+                                title: 'Aptos',
+                            },
+                            {
+                                icon: <Icons.Sui />,
+                                title: 'Sui',
+                            },
+                            {
+                                icon: <Icons.Ethereum />,
+                                title: 'Ethereum',
+                            },
+                        ]}
+                    />
                 </div>
 
                 <div className={CnForm('title')}>Select Count to Mint</div>
 
                 <div className={CnForm('counter')}>
-                    <Counter />
+                    <Counter
+                        max={20}
+                        value={mintCount}
+                        onChange={mintCountChangeCallback}
+                    />
 
                     <div className={CnForm('subtext')}>
                         Your limit for mint: 20
@@ -47,12 +97,12 @@ export const Form: React.FC<IFormProps> = () => {
                 <div className={CnForm('info-item')}>
                     <div className={CnForm('info-item-left')}>
                         <div className={CnForm('info-item-title')}>
-                            Mint Price:
+                            Subtotal:
                         </div>
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>
-                            0.00005 BTC
+                            0.001 BTC
                         </div>
                         <div className={CnForm('subtext')}>1.31 USDT</div>
                     </div>
@@ -60,12 +110,12 @@ export const Form: React.FC<IFormProps> = () => {
                 <div className={CnForm('info-item')}>
                     <div className={CnForm('info-item-left')}>
                         <div className={CnForm('info-item-title')}>
-                            Mint Price:
+                            Service fee:
                         </div>
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>
-                            0.00005 BTC
+                            0.000005 BTC
                         </div>
                         <div className={CnForm('subtext')}>1.31 USDT</div>
                     </div>
@@ -73,12 +123,12 @@ export const Form: React.FC<IFormProps> = () => {
                 <div className={CnForm('info-item')}>
                     <div className={CnForm('info-item-left')}>
                         <div className={CnForm('info-item-title')}>
-                            Mint Price:
+                            TxN fee:
                         </div>
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>
-                            0.00005 BTC
+                            0.000002 BTC
                         </div>
                         <div className={CnForm('subtext')}>1.31 USDT</div>
                     </div>
@@ -89,7 +139,7 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right', { total: true })}>
                         <div className={CnForm('info-item-price')}>
-                            26.57 USDT
+                            0.001 BTC
                         </div>
                         <div className={CnForm('subtext')}>1.31 USDT</div>
                     </div>

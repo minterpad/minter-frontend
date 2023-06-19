@@ -114,33 +114,33 @@ export const Info: FC = () => {
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
-                        <div className={CnInfo('stat-name')}>Mint Price:</div>
-                        <div className={CnInfo('stat-price')}>0.00005 BTC</div>
+                        <div className={CnInfo('stat-name')}>Subtotal:</div>
+                        <div className={CnInfo('stat-price')}>0.001 BTC</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>1.31 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>26.39 USDT</div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
-                        <div className={CnInfo('stat-name')}>Mint Price:</div>
-                        <div className={CnInfo('stat-price')}>0.00005 BTC</div>
+                        <div className={CnInfo('stat-name')}>Service fee:</div>
+                        <div className={CnInfo('stat-price')}>0.000005 BTC</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>1.31 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>0.13 USDT</div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
-                        <div className={CnInfo('stat-name')}>Mint Price:</div>
-                        <div className={CnInfo('stat-price')}>0.00005 BTC</div>
+                        <div className={CnInfo('stat-name')}>TxN fee:</div>
+                        <div className={CnInfo('stat-price')}>0.000002 BTC</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>1.31 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>0.05 USDT</div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name', { total: true })}>
                             total amount:
                         </div>
-                        <div className={CnInfo('stat-price')}>0.00005 BTC</div>
+                        <div className={CnInfo('stat-price')}>0.001 BTc</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>1.31 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>26.57 USDT</div>
                 </div>
             </div>
             <div className={CnInfo('footer')}>

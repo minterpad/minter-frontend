@@ -83,10 +83,25 @@
             }
 
             &-action {
+                cursor: pointer;
+
                 display: flex;
                 align-items: center;
 
                 margin-bottom: 16px;
+
+                &_selected {
+                    .provideAddressModal {
+                        &-radio-item-action-icon {
+                            background: #FF7A00;
+                            border: 2px solid #FF7A00;
+
+                            & svg {
+                                display: block;
+                            }
+                        }
+                    }
+                }
 
                 &-icon {
                     cursor: pointer;
@@ -103,6 +118,10 @@
                     border: 2px solid rgba(255, 255, 255, 0.4);
 
                     margin-right: 8px;
+
+                    & svg {
+                        display: none;
+                    }
                 }
 
                 &-text {

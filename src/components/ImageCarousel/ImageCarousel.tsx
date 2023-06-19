@@ -1,9 +1,11 @@
 import { cn } from '@bem-react/classname';
-
-import './ImageCarousel.scss';
 import { Button } from 'components';
 import { Icons } from 'assets';
 import { Link } from 'react-router-dom';
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import '@splidejs/splide/css/core';
+
+import './ImageCarousel.scss';
 
 const CnImageCarousel = cn('imageCarousel');
 
@@ -11,18 +13,44 @@ interface IImageCarouselProps {}
 
 export const ImageCarousel: React.FC<IImageCarouselProps> = () => {
     return (
+        // <div className={CnImageCarousel()}>
+        //     <div className={CnImageCarousel('action', { left: true })}>
+        //         <Icons.AngleLeft />
+        //     </div>
+
+        //     <ImageCarouselItem />
+
+        //     <ImageCarouselProgressBar />
+
+        //     <div className={CnImageCarousel('action', { right: true })}>
+        //         <Icons.AngleRight />
+        //     </div>
+        // </div>
+
         <div className={CnImageCarousel()}>
-            <div className={CnImageCarousel('action', { left: true })}>
-                <Icons.AngleLeft />
-            </div>
-
-            <ImageCarouselItem />
-
-            <ImageCarouselProgressBar />
-
-            <div className={CnImageCarousel('action', { right: true })}>
-                <Icons.AngleRight />
-            </div>
+            <Splide
+                hasTrack={false}
+                options={{
+                    rewind: true,
+                    arrowPath:
+                        'M15.3333 11.3V10.6H14.6667V9.9H13.3333V8.5H12V7.1H10.6667V5.7H9.33333V5H8V7.1H9.33333V8.5H10.6667V9.9H12V11.3H13.3333V12.7H12V14.1H10.6667V15.5H9.33333V16.9H8V19H9.33333V18.3H10.6667V16.9H12V16.2V15.5H13.3333V14.8V14.1H14.6667V13.4H15.3333V12.7H16V12V11.3H15.3333Z',
+                }}
+            >
+                <SplideTrack>
+                    <SplideSlide>
+                        <ImageCarouselItem />
+                    </SplideSlide>
+                    <SplideSlide>
+                        <ImageCarouselItem />
+                    </SplideSlide>
+                    <SplideSlide>
+                        <ImageCarouselItem />
+                    </SplideSlide>
+                    <SplideSlide>
+                        <ImageCarouselItem />
+                    </SplideSlide>
+                </SplideTrack>
+            </Splide>
         </div>
     );
 };
@@ -78,8 +106,7 @@ const ImageCarouselItem = () => {
                         Minter OG Badges, with 300 Ordinals, begin with an
                         initial batch of 100 representing the Minter Testnet.
                         They'll be raffled for everyone to have a chance to
-                        acquire them. These symbolic ordinals are vital in the
-                        Minter community, forming its cornerstone.
+                        acquire them.
                     </div>
 
                     <div className={CnImageCarouselItem('action')}>

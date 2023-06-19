@@ -8,14 +8,23 @@ import {
 import { cn } from '@bem-react/classname';
 import { useLocation, useNavigate } from 'react-router';
 import { WalletTypes } from 'types/enums';
-
-import './ProvideAddressModal.scss';
 import { Button, Input } from 'components';
 import { Icons } from 'assets';
+import { ProvideType } from './ProvideAddressModal.types';
+
+import './ProvideAddressModal.scss';
 
 const CnProvideAddressModal = cn('provideAddressModal');
 
 export const ProvideAddressModal = () => {
+    const [selectedItem, setSelectedItem] = useState(ProvideType.NOW);
+
+    const selectedItemChangeCallback = useCallback((value: ProvideType) => {
+        return () => {
+            setSelectedItem(value);
+        };
+    }, []);
+
     return (
         <div className={CnProvideAddressModal()}>
             <div className={CnProvideAddressModal('title')}>
@@ -24,7 +33,12 @@ export const ProvideAddressModal = () => {
 
             <div className={CnProvideAddressModal('radio')}>
                 <div className={CnProvideAddressModal('radio-item')}>
-                    <div className={CnProvideAddressModal('radio-item-action')}>
+                    <div
+                        onClick={selectedItemChangeCallback(ProvideType.NOW)}
+                        className={CnProvideAddressModal('radio-item-action', {
+                            selected: selectedItem === ProvideType.NOW,
+                        })}
+                    >
                         <div
                             className={CnProvideAddressModal(
                                 'radio-item-action-icon',
@@ -57,7 +71,12 @@ export const ProvideAddressModal = () => {
                     />
                 </div>
                 <div className={CnProvideAddressModal('radio-item')}>
-                    <div className={CnProvideAddressModal('radio-item-action')}>
+                    <div
+                        onClick={selectedItemChangeCallback(ProvideType.LATER)}
+                        className={CnProvideAddressModal('radio-item-action', {
+                            selected: selectedItem === ProvideType.LATER,
+                        })}
+                    >
                         <div
                             className={CnProvideAddressModal(
                                 'radio-item-action-icon',

@@ -15,6 +15,53 @@
     justify-content: center;
     flex-direction: column;
 
+    & .splide {
+        width: 100%;
+        height: 100%;
+
+        &__track {
+            width: 100%;
+            height: 100%;
+        }
+
+        &__arrows {
+            
+        }
+
+        &__arrow {
+            z-index: 1;
+
+            cursor: pointer;
+
+            position: absolute;
+            border:none;
+            background: none;
+
+            fill: #fff;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            &--next {
+                right: 20px;
+                top: 50%;
+            }
+
+            &--prev {
+                left: 20px;
+                top: 50%;
+
+                transform: rotate(180deg);
+            }
+        }
+    }
+
     &-action {
         z-index: 100;
 
@@ -59,10 +106,6 @@
     &Item {
         width: 100%;
         height: 100%;
-
-        position: absolute;
-        left: 0;
-        top: 0;
 
         display: flex;
         align-items: center;

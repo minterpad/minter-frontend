@@ -12,7 +12,7 @@ const closableModals = ['connectWallet', 'provideAddress'];
 const rollUpModals = [''];
 
 export const Modal: React.FC = memo(() => {
-    const { search } = useLocation();
+    const { search, pathname } = useLocation();
     const navigate = useNavigate();
 
     const {
@@ -48,8 +48,8 @@ export const Modal: React.FC = memo(() => {
     }, [isModalShow]);
 
     const closeModal = useCallback(() => {
-        navigate('/');
-    }, [navigate]);
+        navigate(pathname);
+    }, [navigate, pathname]);
 
     const closeModalContent = useMemo(() => {
         if (rollUpModals.includes(modalType as string)) {

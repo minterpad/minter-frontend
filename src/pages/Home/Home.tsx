@@ -17,6 +17,7 @@ export const Home: React.FC<IHomeProps> = () => {
             </div>
 
             <div className={CnHome('collections')}>
+                <div className={CnHome('collections-background')}></div>
                 <Collections />
             </div>
         </PageLayout>
