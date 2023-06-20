@@ -2,7 +2,7 @@ import { cn } from '@bem-react/classname';
 import { Button, Counter, Select } from 'components';
 import { Link } from 'react-router-dom';
 import { Icons } from 'assets';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import './Form.scss';
 import { useDynamic } from 'hooks/useDynamic';
@@ -11,17 +11,109 @@ import { useAppDispatch } from 'hooks/useAppDispatch';
 import { EvmChains, Token } from 'types/enums';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { mintActions } from 'store/mint/mint.actions';
+import { fetchCoinsPrice } from 'api/coingecko';
+import { coingeckoIdFromToken } from 'conts/mappers';
 
 const CnForm = cn('form');
 
 interface IFormProps {}
 
+const baseServiceFee = 0.000005;
+const baseTxnFee = 0.000002;
+
 export const Form: React.FC<IFormProps> = () => {
+    const dispatch = useAppDispatch();
+    const { evmNetwork } = useDynamic();
     const [mintCount, setMintCount] = useState(1);
+    const [tokensPrice, setTokensPrice] = useState<any>(null);
+    const selectedToken = useAppSelector((store) => store.mint.selectedToken);
+
+    useEffect(() => {
+        fetchCoinsPrice().then((res) => setTokensPrice(res));
+    }, []);
+
+    const {
+        serviceFee,
+        txnFee,
+        selectedTokenServiceFee,
+        selectedTokenTxnFee,
+        btcTotal,
+        selectedTokenTotal,
+    } = useMemo(() => {
+        let serviceFee = baseServiceFee * mintCount;
+        let txnFee = baseTxnFee * mintCount;
+
+        if (!tokensPrice) return { serviceFee, txnFee };
+        const btcRate = tokensPrice.bitcoin.usd;
+        const ethRate = tokensPrice[coingeckoIdFromToken[Token.ETH]].usd;
+        const maticRate = tokensPrice[coingeckoIdFromToken[Token.MATIC]].usd;
+
+        if (selectedToken === Token.USDC || selectedToken === Token.USDT) {
+            const selectedTokenServiceFee = btcRate * serviceFee;
+            const selectedTokenTxnFee = btcRate * txnFee;
+            const btcTotal = serviceFee + txnFee;
+            const selectedTokenTotal =
+                selectedTokenServiceFee + selectedTokenTxnFee;
+
+            return {
+                serviceFee,
+                txnFee,
+                selectedTokenServiceFee,
+                selectedTokenTxnFee,
+                btcTotal,
+                selectedTokenTotal,
+            };
+        } else {
+            const selectedTokenServiceFee =
+                (btcRate * serviceFee) /
+                (selectedToken === Token.ETH ? ethRate : maticRate);
+            const selectedTokenTxnFee =
+                (btcRate * txnFee) /
+                (selectedToken === Token.ETH ? ethRate : maticRate);
+            const btcTotal = serviceFee + txnFee;
+            const selectedTokenTotal =
+                selectedTokenServiceFee + selectedTokenTxnFee;
+            return {
+                serviceFee,
+                txnFee,
+                selectedTokenServiceFee,
+                selectedTokenTxnFee,
+                btcTotal,
+                selectedTokenTotal,
+            };
+        }
+    }, [tokensPrice, mintCount, selectedToken]);
 
     const mintCountChangeCallback = useCallback((value: number) => {
         setMintCount(value);
     }, []);
+
+    const mintClickCallback = useCallback(() => {
+        dispatch(
+            mintActions.setMintTransaction({
+                serviceFee,
+                txnFee,
+                selectedTokenServiceFee,
+                selectedTokenTxnFee,
+                selectedToken,
+                btcTotal,
+                selectedTokenTotal,
+                network: evmNetwork.vanityName ?? evmNetwork?.chainName,
+                count: mintCount,
+            }),
+        );
+    }, [
+        dispatch,
+        serviceFee,
+        txnFee,
+        selectedToken,
+        selectedTokenTotal,
+        selectedTokenServiceFee,
+        selectedTokenTxnFee,
+        btcTotal,
+        evmNetwork,
+        mintCount,
+    ]);
 
     return (
         <div className={CnForm()}>
@@ -54,7 +146,9 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>FREE</div>
-                        <div className={CnForm('subtext')}>0 USDT</div>
+                        <div className={CnForm('subtext')}>
+                            0 {selectedToken}
+                        </div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -65,7 +159,9 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>0 BTC</div>
-                        <div className={CnForm('subtext')}>0 USDT</div>
+                        <div className={CnForm('subtext')}>
+                            0 {selectedToken}
+                        </div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -76,9 +172,12 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>
-                            0.000005 BTC
+                            {serviceFee.toFixed(5)} BTC
                         </div>
-                        <div className={CnForm('subtext')}>0.13 USDT</div>
+                        <div className={CnForm('subtext')}>
+                            {selectedTokenServiceFee?.toFixed(5)}{' '}
+                            {selectedToken}
+                        </div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -89,9 +188,11 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>
-                            0.000002 BTC
+                            {txnFee.toFixed(5)} BTC
                         </div>
-                        <div className={CnForm('subtext')}>0.08 USDT</div>
+                        <div className={CnForm('subtext')}>
+                            {selectedTokenTxnFee?.toFixed(5)} {selectedToken}
+                        </div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -100,15 +201,21 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right', { total: true })}>
                         <div className={CnForm('info-item-price')}>
-                            0.000005 BTC
+                            {selectedTokenTotal?.toFixed(5)} {selectedToken}
                         </div>
-                        <div className={CnForm('subtext')}>0.21 USDT</div>
+                        <div className={CnForm('subtext')}>
+                            {btcTotal?.toFixed(5)} BTC
+                        </div>
                     </div>
                 </div>
 
                 <div className={CnForm('action')}>
-                    <Link to="/success">
-                        <Button view="orange" size="l">
+                    <Link to="?modal=provideAddress">
+                        <Button
+                            onClick={mintClickCallback}
+                            view="orange"
+                            size="l"
+                        >
                             Mint
                         </Button>
                     </Link>
@@ -189,8 +296,13 @@ const MintSelect = () => {
     const networkItems = useMemo(
         () =>
             evmNetworks.map((network: EvmNetwork) => ({
-                icon: <img src={network.iconUrls[0]} alt={network.name} />,
-                title: network.vanityName ?? network.name,
+                icon: (
+                    <img
+                        src={network?.iconUrls ? network?.iconUrls[0] : ''}
+                        alt={network.chainName}
+                    />
+                ),
+                title: network.vanityName ?? network?.chainName,
                 value: network,
             })),
         [evmNetworks],

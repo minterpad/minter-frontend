@@ -7,3 +7,10 @@ export const iconFromToken = {
     [Token.USDC]: <Icons.Usdc />,
     [Token.USDT]: <Icons.Usdt />,
 };
+
+export const coingeckoIdFromToken = {
+    [Token.ETH]: 'ethereum',
+    [Token.USDC]: 'usd-coin',
+    [Token.USDT]: 'tether',
+    [Token.MATIC]: 'matic-network',
+};

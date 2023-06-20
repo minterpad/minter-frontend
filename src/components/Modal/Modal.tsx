@@ -8,7 +8,7 @@ import './Modal.css';
 
 const CnModal = cn('modal');
 
-const closableModals = ['connectWallet', 'provideAddress'];
+const closableModals = ['connectWallet', 'provideAddress', 'error'];
 const rollUpModals = [''];
 
 export const Modal: React.FC = memo(() => {

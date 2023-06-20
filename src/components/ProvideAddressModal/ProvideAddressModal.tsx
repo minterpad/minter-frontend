@@ -11,19 +11,46 @@ import { WalletTypes } from 'types/enums';
 import { Button, Input } from 'components';
 import { Icons } from 'assets';
 import { ProvideType } from './ProvideAddressModal.types';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { mintActions } from 'store/mint/mint.actions';
 
 import './ProvideAddressModal.scss';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useDynamic } from 'hooks/useDynamic';
 
 const CnProvideAddressModal = cn('provideAddressModal');
 
 export const ProvideAddressModal = () => {
-    const [selectedItem, setSelectedItem] = useState(ProvideType.NOW);
+    const dispatch = useAppDispatch();
+    const [provideType, setProvideType] = useState(ProvideType.NOW);
 
-    const selectedItemChangeCallback = useCallback((value: ProvideType) => {
+    const provideTypeChangeCallback = useCallback((value: ProvideType) => {
         return () => {
-            setSelectedItem(value);
+            setProvideType(value);
         };
     }, []);
+
+    const navigate = useNavigate();
+    const transaction = useAppSelector((store) => store.mint.transaction);
+
+    const btcAddressChangeCallback = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(mintActions.setMintTransactionBtcAddress(e.target.value));
+        },
+        [dispatch],
+    );
+
+    useEffect(() => {
+        if (!transaction) {
+            navigate(-1);
+        }
+    }, [navigate, transaction]);
+
+    const { mint } = useDynamic();
+
+    const mintClickCallback = useCallback(() => {
+        mint(transaction);
+    }, [mint, transaction]);
 
     return (
         <div className={CnProvideAddressModal()}>
@@ -34,9 +61,9 @@ export const ProvideAddressModal = () => {
             <div className={CnProvideAddressModal('radio')}>
                 <div className={CnProvideAddressModal('radio-item')}>
                     <div
-                        onClick={selectedItemChangeCallback(ProvideType.NOW)}
+                        onClick={provideTypeChangeCallback(ProvideType.NOW)}
                         className={CnProvideAddressModal('radio-item-action', {
-                            selected: selectedItem === ProvideType.NOW,
+                            selected: provideType === ProvideType.NOW,
                         })}
                     >
                         <div
@@ -68,13 +95,15 @@ export const ProvideAddressModal = () => {
                         placeholder="bitcoin address"
                         view="dark"
                         inputSize="l"
+                        value={transaction?.btcAddress}
+                        onChange={btcAddressChangeCallback}
                     />
                 </div>
                 <div className={CnProvideAddressModal('radio-item')}>
                     <div
-                        onClick={selectedItemChangeCallback(ProvideType.LATER)}
+                        onClick={provideTypeChangeCallback(ProvideType.LATER)}
                         className={CnProvideAddressModal('radio-item-action', {
-                            selected: selectedItem === ProvideType.LATER,
+                            selected: provideType === ProvideType.LATER,
                         })}
                     >
                         <div
@@ -109,15 +138,23 @@ export const ProvideAddressModal = () => {
                         total:
                     </div>
                     <div className={CnProvideAddressModal('price-value')}>
-                        2639.50 usdt
+                        {transaction?.selectedTokenTotal.toFixed(5)}{' '}
+                        {transaction?.selectedToken}
                     </div>
                 </div>
                 <div className={CnProvideAddressModal('price-chain')}>
-                    Ethereum
+                    {transaction?.network}
                 </div>
             </div>
 
-            <Button view="orange" size="l">
+            <Button
+                onClick={mintClickCallback}
+                disabled={
+                    provideType === ProvideType.NOW && !transaction.btcAddress
+                }
+                view="orange"
+                size="l"
+            >
                 confirm
             </Button>
         </div>

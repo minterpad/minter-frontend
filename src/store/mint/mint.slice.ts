@@ -4,12 +4,12 @@ import { mintActions } from './mint.actions';
 
 export interface MintState {
     selectedToken: Token;
-    selectedNetwork: Network;
+    transaction: any;
 }
 
 const initialState: MintState = {
     selectedToken: Token.ETH,
-    selectedNetwork: Network.GOERLI,
+    transaction: null,
 };
 
 export const mintSlice = createSlice<MintState, SliceCaseReducers<MintState>>({
@@ -22,9 +22,26 @@ export const mintSlice = createSlice<MintState, SliceCaseReducers<MintState>>({
         });
 
         builder.addCase(
-            mintActions.setSelectedNetwork,
+            mintActions.setMintTransaction,
             (state, { payload }) => {
-                state.selectedNetwork = payload;
+                state.transaction = payload;
+            },
+        );
+
+        builder.addCase(
+            mintActions.setMintTransactionBtcAddress,
+            (state, { payload }) => {
+                state.transaction.btcAddress = payload;
+            },
+        );
+
+        builder.addCase(
+            mintActions.updateMintTransactionBtcAddress,
+            (state, { payload }) => {
+                state.transaction = {
+                    ...state.transaction,
+                    ...payload,
+                };
             },
         );
     },

@@ -8,3 +8,4 @@ export { Wallet } from './Wallet';
 export { Modal } from './Modal';
 export { Input } from './Input';
 export { LoaderModal } from './LoaderModal';
+export { ErrorModal } from './ErrorModal';

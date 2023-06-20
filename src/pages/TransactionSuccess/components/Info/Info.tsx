@@ -4,10 +4,14 @@ import { PageLayout } from 'layouts';
 import { Icons } from 'assets';
 
 import './Info.scss';
+import { useAppSelector } from 'hooks/useAppSelector';
+import moment from 'moment';
 
 const CnInfo = cn('info');
 
 export const Info: FC = () => {
+    const transaction = useAppSelector((store) => store.mint.transaction);
+
     return (
         <div className={CnInfo()}>
             <div className={CnInfo('nft')}>
@@ -109,46 +113,65 @@ export const Info: FC = () => {
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>Mint Price:</div>
-                        <div className={CnInfo('stat-price')}>0.00005 BTC</div>
+                        <div className={CnInfo('stat-price')}>FREE</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>1.31 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>
+                        0.00 {transaction?.selectedToken}
+                    </div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>Subtotal:</div>
                         <div className={CnInfo('stat-price')}>0.00 BTC</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>0.00 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>
+                        0.00 {transaction?.selectedToken}
+                    </div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>Service fee:</div>
-                        <div className={CnInfo('stat-price')}>0.000005</div>
+                        <div className={CnInfo('stat-price')}>
+                            {transaction?.serviceFee.toFixed(5)} BTC
+                        </div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>0.13 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>
+                        {transaction?.selectedTokenServiceFee.toFixed(5)}{' '}
+                        {transaction?.selectedToken}
+                    </div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>TxN fee:</div>
-                        <div className={CnInfo('stat-price')}>0.000002 BTC</div>
+                        <div className={CnInfo('stat-price')}>
+                            {transaction?.txnFee.toFixed(5)} BTC
+                        </div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>0.08 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>
+                        {transaction?.selectedTokenTxnFee.toFixed(5)}{' '}
+                        {transaction?.selectedToken}
+                    </div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name', { total: true })}>
                             total amount:
                         </div>
-                        <div className={CnInfo('stat-price')}>0.000005 BTc</div>
+                        <div className={CnInfo('stat-price')}>
+                            {transaction?.btcTotal.toFixed(5)} BTc
+                        </div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>0.21 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>
+                        {transaction?.selectedTokenTotal.toFixed(5)}{' '}
+                        {transaction?.selectedToken}
+                    </div>
                 </div>
             </div>
             <div className={CnInfo('footer')}>
                 <div className={CnInfo('footer-item')}>
                     <div className={CnInfo('footer-item-label')}>tx id</div>
                     <div className={CnInfo('footer-item-value')}>
-                        9a2468889936b87b8d64211e1d2a36afebff6c73eaa8fa4a849cfe099076e723
+                        {transaction?.txHash}
                     </div>
                 </div>
                 <div className={CnInfo('footer-item')}>
@@ -156,7 +179,7 @@ export const Info: FC = () => {
                         date and time
                     </div>
                     <div className={CnInfo('footer-item-value')}>
-                        07.06.2023 22:30
+                        {moment(transaction?.date).format('DD.MM.YYYY HH:mm')}
                     </div>
                 </div>
             </div>

@@ -10,10 +10,10 @@ import './App.scss';
 
 export const App = () => {
     return (
-        <Provider store={store}>
-            <DynamicProvider>
-                <div className="App">
-                    <BrowserRouter>
+        <BrowserRouter>
+            <Provider store={store}>
+                <DynamicProvider>
+                    <div className="App">
                         <Modal />
                         <Routes>
                             <Route path="/" element={<Home />} />
@@ -25,9 +25,9 @@ export const App = () => {
                                 element={<TransactionSuccess />}
                             />
                         </Routes>
-                    </BrowserRouter>
-                </div>
-            </DynamicProvider>
-        </Provider>
+                    </div>
+                </DynamicProvider>
+            </Provider>
+        </BrowserRouter>
     );
 };

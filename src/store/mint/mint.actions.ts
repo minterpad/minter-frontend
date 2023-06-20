@@ -1,16 +1,21 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import { Network, Token } from 'types/enums';
 
-// export const fetchTransactionsHistory = createAsyncThunk(
-//     '@history/fetchTransactionsHistory',
-//     async ({ address, key }: { address: string; key: NetworkType }) => {},
-// );
-
 const setSelectedToken = createAction<Token>('@mint/setSelectedToken');
 
-const setSelectedNetwork = createAction<Network>('@mint/setSelectedNetwork');
+const setMintTransaction = createAction<any>('@mint/setMintTransaction');
+
+const setMintTransactionBtcAddress = createAction<any>(
+    '@mint/setMintTransactionBtcAddress',
+);
+
+const updateMintTransactionBtcAddress = createAction<any>(
+    '@mint/updateMintTransactionBtcAddress',
+);
 
 export const mintActions = {
     setSelectedToken,
-    setSelectedNetwork,
+    setMintTransaction,
+    setMintTransactionBtcAddress,
+    updateMintTransactionBtcAddress,
 };
