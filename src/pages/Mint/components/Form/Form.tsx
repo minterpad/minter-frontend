@@ -1,10 +1,16 @@
 import { cn } from '@bem-react/classname';
-
-import './Form.scss';
 import { Button, Counter, Select } from 'components';
 import { Link } from 'react-router-dom';
 import { Icons } from 'assets';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+
+import './Form.scss';
+import { useDynamic } from 'hooks/useDynamic';
+import { EvmNetwork } from '@dynamic-labs/sdk-react';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { EvmChains, Token } from 'types/enums';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { mintActions } from 'store/mint/mint.actions';
 
 const CnForm = cn('form');
 
@@ -22,60 +28,19 @@ export const Form: React.FC<IFormProps> = () => {
             <div className={CnForm('head')}>
                 <div className={CnForm('title')}>Select Token & Network</div>
 
-                <div className={CnForm('select')}>
-                    <Select
-                        selectedItem={{
-                            icon: <Icons.Ethereum />,
-                            title: 'Ethereum',
-                        }}
-                        items={[
-                            {
-                                icon: <Icons.Aptos />,
-                                title: 'Aptos',
-                            },
-                            {
-                                icon: <Icons.Sui />,
-                                title: 'Sui',
-                            },
-                            {
-                                icon: <Icons.Ethereum />,
-                                title: 'Ethereum',
-                            },
-                        ]}
-                    />
-                    <Select
-                        selectedItem={{
-                            icon: <Icons.Ethereum />,
-                            title: 'Ethereum',
-                        }}
-                        items={[
-                            {
-                                icon: <Icons.Aptos />,
-                                title: 'Aptos',
-                            },
-                            {
-                                icon: <Icons.Sui />,
-                                title: 'Sui',
-                            },
-                            {
-                                icon: <Icons.Ethereum />,
-                                title: 'Ethereum',
-                            },
-                        ]}
-                    />
-                </div>
+                <MintSelect />
 
                 <div className={CnForm('title')}>Select Count to Mint</div>
 
                 <div className={CnForm('counter')}>
                     <Counter
-                        max={20}
+                        max={100}
                         value={mintCount}
                         onChange={mintCountChangeCallback}
                     />
 
                     <div className={CnForm('subtext')}>
-                        Your limit for mint: 20
+                        Your limit for mint: 100
                     </div>
                 </div>
             </div>
@@ -88,10 +53,8 @@ export const Form: React.FC<IFormProps> = () => {
                         </div>
                     </div>
                     <div className={CnForm('info-item-right')}>
-                        <div className={CnForm('info-item-price')}>
-                            0.00005 BTC
-                        </div>
-                        <div className={CnForm('subtext')}>1.31 USDT</div>
+                        <div className={CnForm('info-item-price')}>FREE</div>
+                        <div className={CnForm('subtext')}>0 USDT</div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -101,10 +64,8 @@ export const Form: React.FC<IFormProps> = () => {
                         </div>
                     </div>
                     <div className={CnForm('info-item-right')}>
-                        <div className={CnForm('info-item-price')}>
-                            0.001 BTC
-                        </div>
-                        <div className={CnForm('subtext')}>1.31 USDT</div>
+                        <div className={CnForm('info-item-price')}>0 BTC</div>
+                        <div className={CnForm('subtext')}>0 USDT</div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -117,7 +78,7 @@ export const Form: React.FC<IFormProps> = () => {
                         <div className={CnForm('info-item-price')}>
                             0.000005 BTC
                         </div>
-                        <div className={CnForm('subtext')}>1.31 USDT</div>
+                        <div className={CnForm('subtext')}>0.13 USDT</div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -130,7 +91,7 @@ export const Form: React.FC<IFormProps> = () => {
                         <div className={CnForm('info-item-price')}>
                             0.000002 BTC
                         </div>
-                        <div className={CnForm('subtext')}>1.31 USDT</div>
+                        <div className={CnForm('subtext')}>0.08 USDT</div>
                     </div>
                 </div>
                 <div className={CnForm('info-item')}>
@@ -139,9 +100,9 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right', { total: true })}>
                         <div className={CnForm('info-item-price')}>
-                            0.001 BTC
+                            0.000005 BTC
                         </div>
-                        <div className={CnForm('subtext')}>1.31 USDT</div>
+                        <div className={CnForm('subtext')}>0.21 USDT</div>
                     </div>
                 </div>
 
@@ -153,6 +114,144 @@ export const Form: React.FC<IFormProps> = () => {
                     </Link>
                 </div>
             </div>
+        </div>
+    );
+};
+
+const tokensList = [
+    {
+        icon: <Icons.Eth />,
+        title: 'ETH',
+        value: Token.ETH,
+    },
+    {
+        icon: <Icons.Usdt />,
+        title: 'USDT',
+        value: Token.USDT,
+    },
+    {
+        icon: <Icons.Usdc />,
+        title: 'USDC',
+        value: Token.USDC,
+    },
+    {
+        icon: <Icons.Matic />,
+        title: 'MATIC',
+        value: Token.MATIC,
+    },
+];
+
+const itemFromToken = {
+    [Token.ETH]: {
+        icon: <Icons.Eth />,
+        title: 'ETH',
+    },
+    [Token.USDT]: {
+        icon: <Icons.Usdt />,
+        title: 'USDT',
+    },
+    [Token.USDC]: {
+        icon: <Icons.Usdc />,
+        title: 'USDC',
+    },
+    [Token.MATIC]: {
+        icon: <Icons.Matic />,
+        title: 'MATIC',
+    },
+};
+
+const MintSelect = () => {
+    const dispatch = useAppDispatch();
+    const { switchNetwork, evmNetworks, evmNetwork } = useDynamic();
+    const selectedToken = useAppSelector((store) => store.mint.selectedToken);
+
+    const networkSelectClickCallback = useCallback(
+        (value: EvmNetwork) => {
+            switchNetwork(value).then(() => {
+                if (
+                    value.chainId === EvmChains.MUMBAI &&
+                    selectedToken === Token.ETH
+                ) {
+                    dispatch(mintActions.setSelectedToken(Token.MATIC));
+                }
+
+                if (
+                    value.chainId !== EvmChains.MUMBAI &&
+                    selectedToken === Token.MATIC
+                ) {
+                    dispatch(mintActions.setSelectedToken(Token.ETH));
+                }
+            });
+        },
+        [dispatch, switchNetwork, selectedToken],
+    );
+
+    const networkItems = useMemo(
+        () =>
+            evmNetworks.map((network: EvmNetwork) => ({
+                icon: <img src={network.iconUrls[0]} alt={network.name} />,
+                title: network.vanityName ?? network.name,
+                value: network,
+            })),
+        [evmNetworks],
+    );
+
+    const selectNetworkContent = useMemo(() => {
+        if (!evmNetwork) return null;
+
+        return (
+            <Select
+                itemClickHandler={networkSelectClickCallback}
+                selectedItem={{
+                    icon: (
+                        <img
+                            src={evmNetwork.iconUrls[0]}
+                            alt={evmNetwork.name}
+                        />
+                    ),
+                    title: evmNetwork.vanityName ?? evmNetwork.name,
+                }}
+                items={networkItems}
+            />
+        );
+    }, [evmNetwork, networkItems, networkSelectClickCallback]);
+
+    const tokenSelectClickCallback = useCallback(
+        (value: Token) => {
+            dispatch(mintActions.setSelectedToken(value));
+        },
+        [dispatch],
+    );
+
+    const selectedTokenItem = useMemo(
+        () => itemFromToken[selectedToken],
+        [selectedToken],
+    );
+
+    const tokenItems = useMemo(() => {
+        if (!evmNetwork?.chainId) return [];
+
+        if (evmNetwork?.chainId === EvmChains.MUMBAI) {
+            return tokensList.filter((token) => token.value !== Token.ETH);
+        } else {
+            return tokensList.filter((token) => token.value !== Token.MATIC);
+        }
+    }, [evmNetwork]);
+
+    const selectTokenContent = useMemo(() => {
+        return (
+            <Select
+                itemClickHandler={tokenSelectClickCallback}
+                selectedItem={selectedTokenItem}
+                items={tokenItems}
+            />
+        );
+    }, [selectedTokenItem, tokenSelectClickCallback, tokenItems]);
+
+    return (
+        <div className={CnForm('select')}>
+            {selectNetworkContent}
+            {selectTokenContent}
         </div>
     );
 };

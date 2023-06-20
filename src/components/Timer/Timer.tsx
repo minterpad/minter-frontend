@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { cn } from '@bem-react/classname';
 import { timerFromTimestamp } from 'utils/timer';
+import moment from 'moment';
 
 import './Timer.scss';
 
@@ -8,7 +9,9 @@ const CnTimer = cn('timer');
 
 export const Timer: React.FC<{ deadline: number }> = memo(({ deadline }) => {
     const calcTimer = useCallback((deadline: number) => {
-        const { d, h, m, s } = timerFromTimestamp(deadline);
+        const { d, h, m, s } = timerFromTimestamp(
+            moment.unix(deadline).toDate().getTime(),
+        );
 
         return {
             d: d < 10 ? '0' + d : `${d}`,

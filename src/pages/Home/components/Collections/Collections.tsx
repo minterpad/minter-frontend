@@ -104,13 +104,14 @@ export const Collections: React.FC<ICollectionsProps> = () => {
                         </td>
                         <td>
                             <div className={CnCollections('table-price')}>
-                                0.005
+                                FREE
+                                {/* 0.005
                                 <div className={CnCollections('table-token')}>
                                     BTC
-                                </div>
+                                </div> */}
                             </div>
                         </td>
-                        <td>07.06.2023</td>
+                        <td>21.06.2023</td>
                         <td>3400</td>
                         <td>NO limit</td>
                     </tr>

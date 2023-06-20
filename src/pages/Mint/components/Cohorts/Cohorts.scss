@@ -49,6 +49,10 @@
             margin-left: 16px;
         }
 
+        &-tractive {
+            border: 1px solid #FF7A00;
+        }
+
         & thead {
             font-family: 'Proto Mono';
             font-style: normal;
@@ -61,6 +65,7 @@
             & th {
                 text-align: left;
                 padding-bottom: 12px;
+                padding-left: 12px;
 
                 &:first-child {
                     padding-left: 12px;
@@ -85,7 +90,6 @@
             & tr {
                 display: table-row;
                 border-radius: 8px;
-                border: 1px solid #FF7A00;
             }
 
             & td {

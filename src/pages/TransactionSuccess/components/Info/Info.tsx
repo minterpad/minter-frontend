@@ -97,11 +97,12 @@ export const Info: FC = () => {
                     Link to collection
                 </div>
                 <a
-                    href="#"
+                    href="https://minterpad.xyz/mint"
                     target="_blank"
                     className={CnInfo('collection-link')}
+                    rel="noreferrer"
                 >
-                    www.minter/343399183333133467yfccdf
+                    www.minterpad.xyz/mint
                 </a>
             </div>
             <div className={CnInfo('stat')}>
@@ -115,14 +116,14 @@ export const Info: FC = () => {
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>Subtotal:</div>
-                        <div className={CnInfo('stat-price')}>0.001 BTC</div>
+                        <div className={CnInfo('stat-price')}>0.00 BTC</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>26.39 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>0.00 USDT</div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>Service fee:</div>
-                        <div className={CnInfo('stat-price')}>0.000005 BTC</div>
+                        <div className={CnInfo('stat-price')}>0.000005</div>
                     </div>
                     <div className={CnInfo('stat-stablePrice')}>0.13 USDT</div>
                 </div>
@@ -131,16 +132,16 @@ export const Info: FC = () => {
                         <div className={CnInfo('stat-name')}>TxN fee:</div>
                         <div className={CnInfo('stat-price')}>0.000002 BTC</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>0.05 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>0.08 USDT</div>
                 </div>
                 <div className={CnInfo('stat-item')}>
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name', { total: true })}>
                             total amount:
                         </div>
-                        <div className={CnInfo('stat-price')}>0.001 BTc</div>
+                        <div className={CnInfo('stat-price')}>0.000005 BTc</div>
                     </div>
-                    <div className={CnInfo('stat-stablePrice')}>26.57 USDT</div>
+                    <div className={CnInfo('stat-stablePrice')}>0.21 USDT</div>
                 </div>
             </div>
             <div className={CnInfo('footer')}>

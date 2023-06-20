@@ -1,7 +1,31 @@
 import { cn } from '@bem-react/classname';
 import { Icons } from 'assets';
+import { mintTimestamp } from 'conts';
+import moment from 'moment';
 
 import './Cohorts.scss';
+import { FC } from 'react';
+
+const chortsItems = [
+    {
+        cohort: 'OG',
+        price: 'FREE',
+        limit: '-',
+        start: mintTimestamp,
+    },
+    {
+        cohort: 'WL',
+        price: 'FREE',
+        limit: '-',
+        start: 1687435200,
+    },
+    {
+        cohort: 'PUBLIC',
+        price: 'FREE',
+        limit: '-',
+        start: 1690027200,
+    },
+];
 
 const CnCohorts = cn('cohorts');
 
@@ -22,55 +46,27 @@ export const Cohorts: React.FC<ICohortsProps> = () => {
                 </thead>
 
                 <tbody>
-                    <tr className={CnCohorts('table-tractive')}>
-                        <td>
-                            <div className={CnCohorts('table-name')}>
-                                OG
-                                <div className={CnCohorts('table-active')}>
-                                    Active now
-                                </div>
-                            </div>
-                        </td>
-                        <td>0.00004 BTC</td>
-                        <td>1</td>
-                        <td>07.06.2023</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className={CnCohorts('table-name')}>OG</div>
-                        </td>
-                        <td>0.00004 BTC</td>
-                        <td></td>
-                        <td>07.06.2023</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className={CnCohorts('table-name')}>
-                                OG
-                                <div className={CnCohorts('table-active')}>
-                                    Active now
-                                </div>
-                            </div>
-                        </td>
-                        <td>0.00004 BTC</td>
-                        <td>NO limit</td>
-                        <td>07.06.2023</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className={CnCohorts('table-name')}>
-                                OG
-                                <div className={CnCohorts('table-active')}>
-                                    Active now
-                                </div>
-                            </div>
-                        </td>
-                        <td>0.00004 BTC</td>
-                        <td>NO limit</td>
-                        <td>07.06.2023</td>
-                    </tr>
+                    {chortsItems.map((props) => {
+                        return <CohortsItem key={props.start} {...props} />;
+                    })}
                 </tbody>
             </table>
         </div>
+    );
+};
+
+const CohortsItem: FC<any> = ({ cohort, price, limit, start }) => {
+    return (
+        <tr className={CnCohorts('table-tractive')}>
+            <td>
+                <div className={CnCohorts('table-name')}>
+                    {cohort}
+                    <div className={CnCohorts('table-active')}>Active now</div>
+                </div>
+            </td>
+            <td>{price}</td>
+            <td>{limit}</td>
+            <td>{moment.unix(start).format('DD.MM.YYYY')}</td>
+        </tr>
     );
 };

@@ -25,6 +25,11 @@ import { ReactComponent as Rise } from './wallets/rise.svg';
 import { ReactComponent as RiseBlack } from './wallets/rise-black.svg';
 import { ReactComponent as WalletConnect } from './wallets/wallet-connect.svg';
 
+import { ReactComponent as Matic } from './tokens/matic.svg';
+import { ReactComponent as Eth } from './tokens/eth.svg';
+import { ReactComponent as Usdc } from './tokens/usdc.svg';
+import { ReactComponent as Usdt } from './tokens/usdt.svg';
+
 import petra from './wallets/petra.png';
 
 const Petra: React.FC = () => {
@@ -57,4 +62,8 @@ export const Icons = {
     Sui,
     Check,
     ArrowRight,
+    Matic,
+    Usdc,
+    Usdt,
+    Eth,
 };

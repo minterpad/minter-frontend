@@ -6,6 +6,7 @@ import { Timer } from 'components';
 
 import './Mint.scss';
 import { FC, memo, useCallback, useState } from 'react';
+import { mintTimestamp } from 'conts';
 
 const CnMint = cn('mint');
 
@@ -66,9 +67,7 @@ export const Mint: React.FC<IMintProps> = () => {
                     <div className={CnMint('stat')}>
                         <div className={CnMint('stat-item')}>
                             <div className={CnMint('stat-label')}>Price:</div>
-                            <div className={CnMint('stat-value')}>
-                                0.005 BTC
-                            </div>
+                            <div className={CnMint('stat-value')}>FREE</div>
                         </div>
                         <div className={CnMint('stat-item', { right: true })}>
                             <div className={CnMint('stat-label')}>
@@ -80,9 +79,9 @@ export const Mint: React.FC<IMintProps> = () => {
 
                     <div className={CnMint('timer')}>
                         <div className={CnMint('timer-title')}>
-                            VIP sales ends in:
+                            Minter WL Passes comprises:
                         </div>
-                        <Timer deadline={new Date().getTime() + 1000000000} />
+                        <Timer deadline={mintTimestamp} />
                     </div>
                     <div className={CnMint('cohorts')}>
                         <Cohorts />
@@ -107,8 +106,8 @@ const MintDropdown: FC = memo(() => {
     return (
         <div className={CnMint('description')}>
             <div className={CnMint('description-text', { show: isDropdown })}>
-                Minter WL Passes comprises a series of Ordinals, with the
-                initial batch consisting of 500. This first batch signifies the
+                Minter WL Passes comprise a series of Ordinals, with the initial
+                batch consisting of 500. This first batch signifies the
                 introduction of Minter Testnet. The distribution of these WL
                 Passes Ordinals to the Minter community will be done through a
                 raffle, allowing all participants a chance to acquire them.

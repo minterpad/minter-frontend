@@ -3,6 +3,7 @@ import { cn } from '@bem-react/classname';
 import './Select.scss';
 import { Icons } from 'assets';
 import { useCallback, useState } from 'react';
+import { useAppDispatch } from 'hooks/useAppDispatch';
 
 const CnSelect = cn('select');
 
@@ -15,7 +16,7 @@ interface SelectItem {
 interface ISelectProps {
     selectedItem: SelectItem;
     items: SelectItem[];
-    itemClickHandler?: (item: SelectItem) => void;
+    itemClickHandler?: (value: any) => void;
 }
 
 export const Select: React.FC<ISelectProps> = ({
@@ -30,7 +31,7 @@ export const Select: React.FC<ISelectProps> = ({
     }, []);
 
     const itemClickCallback = useCallback(
-        (value: SelectItem) => {
+        ({ value }: SelectItem) => {
             return () => {
                 isDropdownShowChangeCallback();
 

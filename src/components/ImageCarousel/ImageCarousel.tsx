@@ -40,15 +40,6 @@ export const ImageCarousel: React.FC<IImageCarouselProps> = () => {
                     <SplideSlide>
                         <ImageCarouselItem />
                     </SplideSlide>
-                    <SplideSlide>
-                        <ImageCarouselItem />
-                    </SplideSlide>
-                    <SplideSlide>
-                        <ImageCarouselItem />
-                    </SplideSlide>
-                    <SplideSlide>
-                        <ImageCarouselItem />
-                    </SplideSlide>
                 </SplideTrack>
             </Splide>
         </div>
