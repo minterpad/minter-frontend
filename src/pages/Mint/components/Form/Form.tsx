@@ -297,6 +297,24 @@ const MintSelect = () => {
         [dispatch, switchNetwork, selectedToken],
     );
 
+    useEffect(() => {
+        if (evmNetwork) {
+            if (
+                evmNetwork.chainId === EvmChains.MUMBAI &&
+                selectedToken === Token.ETH
+            ) {
+                dispatch(mintActions.setSelectedToken(Token.MATIC));
+            }
+
+            if (
+                evmNetwork.chainId !== EvmChains.MUMBAI &&
+                selectedToken === Token.MATIC
+            ) {
+                dispatch(mintActions.setSelectedToken(Token.ETH));
+            }
+        }
+    }, [evmNetwork, dispatch]);
+
     const networkItems = useMemo(
         () =>
             evmNetworks.map((network: EvmNetwork) => ({
