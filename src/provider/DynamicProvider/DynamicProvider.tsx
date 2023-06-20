@@ -126,6 +126,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
         abi: stableCoinAbi?.token as any,
         address: currConfig?.token as `0x${string}`,
         functionName: 'approve',
+        mode: 'recklesslyUnprepared',
     });
 
     const approveToken = useCallback(
@@ -133,7 +134,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
             try {
                 if (approveContract.writeAsync) {
                     const contractResult = await approveContract.writeAsync({
-                        args: [
+                        recklesslySetUnpreparedArgs: [
                             currConfig?.contract,
                             '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
                         ],
@@ -161,6 +162,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
         abi: mintContractAbi?.abi,
         functionName: (currConfig as unknown as any)?.mintFunction,
         chainId: evmNetwork?.chainId,
+        mode: 'recklesslyUnprepared',
     });
 
     const mint = useCallback(
@@ -173,8 +175,8 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                 currConfig.decimals,
             );
 
-            const btcAddress = transaction.btcAddress
-                ? stringToHex(transaction.btcAddress)
+            const btcAddress = transaction?.btcAddress
+                ? stringToHex(transaction?.btcAddress)
                 : [];
 
             try {
@@ -253,6 +255,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
         abi: mintContractAbi?.abi,
         functionName: 'saveBTCAddress',
         chainId: evmNetwork?.chainId,
+        mode: 'recklesslyUnprepared',
     });
 
     const saveBtcAddress = useCallback(
@@ -262,7 +265,10 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                 console.log(address, stringToHex(btcAddress));
 
                 const { hash } = await saveBtcAddressContract.writeAsync({
-                    args: [address, stringToHex(btcAddress)],
+                    recklesslySetUnpreparedArgs: [
+                        address,
+                        stringToHex(btcAddress),
+                    ],
                 });
 
                 await waitForTransaction({ hash });

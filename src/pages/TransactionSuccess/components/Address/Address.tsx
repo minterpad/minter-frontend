@@ -42,11 +42,11 @@ export const Address: FC = () => {
     return (
         <div className={CnAddress()}>
             <div className={CnAddress('title')}>
-                {transaction.btcAddress
+                {transaction?.btcAddress
                     ? 'Your tokens will be delivered to this address'
                     : 'enter your adDress here'}
             </div>
-            {!transaction.btcAddress && (
+            {!transaction?.btcAddress && (
                 <div className={CnAddress('description')}>
                     The NFT will be sent to this Bitcoin address. Please specify
                     Taproot address starting with bc1p
@@ -54,15 +54,15 @@ export const Address: FC = () => {
             )}
             <div className={CnAddress('input')}>
                 <Input
-                    value={transaction.btcAddress ?? btcAddress}
+                    value={transaction?.btcAddress ?? btcAddress}
                     onChange={btcAddressChangeCallback}
-                    disabled={transaction.btcAddress}
+                    disabled={transaction?.btcAddress}
                     view="dark"
                     inputSize="l"
                     placeholder="bc1p..."
                 />
             </div>
-            {!transaction.btcAddress && (
+            {!transaction?.btcAddress && (
                 <div className={CnAddress('action')}>
                     <Button
                         onClick={buttonClickCallback}

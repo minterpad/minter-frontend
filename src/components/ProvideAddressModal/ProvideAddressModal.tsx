@@ -150,7 +150,7 @@ export const ProvideAddressModal = () => {
             <Button
                 onClick={mintClickCallback}
                 disabled={
-                    provideType === ProvideType.NOW && !transaction.btcAddress
+                    provideType === ProvideType.NOW && !transaction?.btcAddress
                 }
                 view="orange"
                 size="l"
