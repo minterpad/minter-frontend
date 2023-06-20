@@ -179,7 +179,9 @@ export const Info: FC = () => {
                         date and time
                     </div>
                     <div className={CnInfo('footer-item-value')}>
-                        {moment(transaction?.date).format('DD.MM.YYYY HH:mm')}
+                        {moment
+                            .unix(transaction?.date)
+                            .format('DD.MM.YYYY HH:mm')}
                     </div>
                 </div>
             </div>
