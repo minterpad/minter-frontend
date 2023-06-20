@@ -192,6 +192,8 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                     ],
                 };
 
+                console.log(mintTokenArguments);
+
                 navigate('?modal=loader');
 
                 if (

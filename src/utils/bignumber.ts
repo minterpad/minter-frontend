@@ -13,7 +13,11 @@ export const aIsGreaterThanOrEqualToB = (
 export const multipliedByDecimals = (
     amount: string | number,
     decimals: number,
-) =>
-    BigNumber(amount)
-        .multipliedBy(10 ** decimals)
-        .toString(10);
+) => {
+    // BigNumber(amount)
+    //     .multipliedBy(10 ** decimals)
+    //     .toString(10);
+    const result = (Number(amount) * 10 ** decimals).toFixed(0);
+
+    return result;
+};
