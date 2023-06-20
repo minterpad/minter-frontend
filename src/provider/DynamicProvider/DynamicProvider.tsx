@@ -91,7 +91,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
         functionName: 'allowance',
         args: [address, currConfig?.contract],
         enabled: false,
-        cacheOnBlock: true,
+        cacheOnBlock: false,
     });
 
     const fetchAllowance = useCallback(async () => {
@@ -112,14 +112,9 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                 return false;
             }
 
-            const amountToSend = multipliedByDecimals(
-                amount,
-                currConfig.decimals,
-            );
-
-            return aIsGreaterThanOrEqualToB(currAllowance._hex, amountToSend);
+            return aIsGreaterThanOrEqualToB(currAllowance._hex, amount);
         },
-        [fetchAllowance, currConfig],
+        [fetchAllowance],
     );
 
     const approveContract = useContractWrite({
@@ -139,10 +134,6 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                             '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
                         ],
                     });
-
-                    // await waitForTransaction({
-                    //     hash: contractResult.hash,
-                    // });
 
                     await wait(1);
 
@@ -177,9 +168,11 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                 currConfig.decimals,
             );
 
-            const btcAddress = transaction?.btcAddress
-                ? stringToHex(transaction?.btcAddress)
-                : [];
+            const encoder = new TextEncoder();
+
+            const uint8Array = encoder.encode(transaction?.btcAddress);
+
+            const btcAddress = transaction?.btcAddress ? uint8Array : [];
 
             try {
                 const mintTokenArguments: any = {
@@ -266,15 +259,15 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
         async (btcAddress: string) => {
             try {
                 navigate('?modal=loader');
-                console.log(address, stringToHex(btcAddress));
+
+                const encoder = new TextEncoder();
+
+                const uint8Array = encoder.encode(btcAddress);
 
                 if (saveBtcAddressContract.writeAsync) {
                     const { hash, wait } =
                         await saveBtcAddressContract.writeAsync({
-                            recklesslySetUnpreparedArgs: [
-                                address,
-                                stringToHex(btcAddress),
-                            ],
+                            recklesslySetUnpreparedArgs: [address, uint8Array],
                         });
 
                     await wait(1);
@@ -286,8 +279,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                     navigate('?modal=success');
                 }
             } catch (err: any) {
-                console.log(err, JSON.stringify(err));
-                navigate('?modal=error');
+                navigate('?modal=error', { state: { error: err.message } });
             }
         },
         [address, saveBtcAddressContract, navigate, dispatch],
