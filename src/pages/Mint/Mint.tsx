@@ -106,11 +106,9 @@ const MintDropdown: FC = memo(() => {
     return (
         <div className={CnMint('description')}>
             <div className={CnMint('description-text', { show: isDropdown })}>
-                Minter WL Passes comprise a series of Ordinals, with the initial
-                batch consisting of 500. This first batch signifies the
-                introduction of Minter Testnet. The distribution of these WL
-                Passes Ordinals to the Minter community will be done through a
-                raffle, allowing all participants a chance to acquire them.
+                MINTER WL PASS. Mint a free pass on any testnet to win one of
+                300 WLs for $OXMI. See what the future of BRC looks like and
+                test your luck!
                 <br />
                 <br />
                 As the name implies, these Ordinals hold symbolic significance,

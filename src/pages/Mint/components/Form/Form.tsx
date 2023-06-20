@@ -6,7 +6,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import './Form.scss';
 import { useDynamic } from 'hooks/useDynamic';
-import { EvmNetwork } from '@dynamic-labs/sdk-react';
+import {
+    EvmNetwork,
+    useDynamicContext,
+    DynamicConnectButton,
+} from '@dynamic-labs/sdk-react';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { EvmChains, Token } from 'types/enums';
 import { useAppSelector } from 'hooks/useAppSelector';
@@ -172,10 +176,10 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>
-                            {serviceFee.toFixed(5)} BTC
+                            {serviceFee.toFixed(6)} BTC
                         </div>
                         <div className={CnForm('subtext')}>
-                            {selectedTokenServiceFee?.toFixed(5)}{' '}
+                            {selectedTokenServiceFee?.toFixed(6)}{' '}
                             {selectedToken}
                         </div>
                     </div>
@@ -188,10 +192,10 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right')}>
                         <div className={CnForm('info-item-price')}>
-                            {txnFee.toFixed(5)} BTC
+                            {txnFee.toFixed(6)} BTC
                         </div>
                         <div className={CnForm('subtext')}>
-                            {selectedTokenTxnFee?.toFixed(5)} {selectedToken}
+                            {selectedTokenTxnFee?.toFixed(6)} {selectedToken}
                         </div>
                     </div>
                 </div>
@@ -201,10 +205,10 @@ export const Form: React.FC<IFormProps> = () => {
                     </div>
                     <div className={CnForm('info-item-right', { total: true })}>
                         <div className={CnForm('info-item-price')}>
-                            {selectedTokenTotal?.toFixed(5)} {selectedToken}
+                            {selectedTokenTotal?.toFixed(6)} {selectedToken}
                         </div>
                         <div className={CnForm('subtext')}>
-                            {btcTotal?.toFixed(5)} BTC
+                            {btcTotal?.toFixed(6)} BTC
                         </div>
                     </div>
                 </div>
@@ -359,6 +363,22 @@ const MintSelect = () => {
             />
         );
     }, [selectedTokenItem, tokenSelectClickCallback, tokenItems]);
+
+    if (!evmNetworks || !evmNetwork) {
+        return (
+            <div className={CnForm('select')}>
+                {/* <Button view="orange" size="m" onClick={}>
+                    Connect wallet
+                </Button> */}
+                <DynamicConnectButton
+                    buttonContainerClassName={CnForm('select-action')}
+                    buttonClassName="button button_view_orange button_size_m"
+                >
+                    Connect wallet
+                </DynamicConnectButton>
+            </div>
+        );
+    }
 
     return (
         <div className={CnForm('select')}>

@@ -9,3 +9,4 @@ export { Modal } from './Modal';
 export { Input } from './Input';
 export { LoaderModal } from './LoaderModal';
 export { ErrorModal } from './ErrorModal';
+export { SuccessModal } from './SuccessModal';

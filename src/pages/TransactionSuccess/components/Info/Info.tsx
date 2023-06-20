@@ -132,11 +132,11 @@ export const Info: FC = () => {
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>Service fee:</div>
                         <div className={CnInfo('stat-price')}>
-                            {transaction?.serviceFee.toFixed(5)} BTC
+                            {transaction?.serviceFee.toFixed(6)} BTC
                         </div>
                     </div>
                     <div className={CnInfo('stat-stablePrice')}>
-                        {transaction?.selectedTokenServiceFee.toFixed(5)}{' '}
+                        {transaction?.selectedTokenServiceFee.toFixed(6)}{' '}
                         {transaction?.selectedToken}
                     </div>
                 </div>
@@ -144,11 +144,11 @@ export const Info: FC = () => {
                     <div className={CnInfo('stat-head')}>
                         <div className={CnInfo('stat-name')}>TxN fee:</div>
                         <div className={CnInfo('stat-price')}>
-                            {transaction?.txnFee.toFixed(5)} BTC
+                            {transaction?.txnFee.toFixed(6)} BTC
                         </div>
                     </div>
                     <div className={CnInfo('stat-stablePrice')}>
-                        {transaction?.selectedTokenTxnFee.toFixed(5)}{' '}
+                        {transaction?.selectedTokenTxnFee.toFixed(6)}{' '}
                         {transaction?.selectedToken}
                     </div>
                 </div>
@@ -158,12 +158,12 @@ export const Info: FC = () => {
                             total amount:
                         </div>
                         <div className={CnInfo('stat-price')}>
-                            {transaction?.btcTotal.toFixed(5)} BTc
+                            {transaction?.selectedTokenTotal.toFixed(6)}{' '}
+                            {transaction?.selectedToken}
                         </div>
                     </div>
                     <div className={CnInfo('stat-stablePrice')}>
-                        {transaction?.selectedTokenTotal.toFixed(5)}{' '}
-                        {transaction?.selectedToken}
+                        {transaction?.btcTotal.toFixed(6)} BTc
                     </div>
                 </div>
             </div>

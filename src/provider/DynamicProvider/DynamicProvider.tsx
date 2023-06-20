@@ -21,6 +21,7 @@ import { toDecimals } from 'utils/decimals';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { mintActions } from 'store/mint/mint.actions';
+import { stringToHex } from 'utils/string';
 
 export const DynamicWalletContext = createContext<any>({});
 
@@ -172,14 +173,8 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                 currConfig.decimals,
             );
 
-            console.log(
-                transaction.selectedTokenTotal,
-                currConfig.decimals,
-                amount,
-            );
-
             const btcAddress = transaction.btcAddress
-                ? transaction.btcAddress.split('')
+                ? stringToHex(transaction.btcAddress)
                 : [];
 
             try {
@@ -253,6 +248,36 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
         ],
     );
 
+    const saveBtcAddressContract = useContractWrite({
+        address: currConfig.contract as `0x${string}`,
+        abi: mintContractAbi?.abi,
+        functionName: 'saveBTCAddress',
+        chainId: evmNetwork?.chainId,
+    });
+
+    const saveBtcAddress = useCallback(
+        async (btcAddress: string) => {
+            try {
+                navigate('?modal=loader');
+                console.log(address, stringToHex(btcAddress));
+
+                const { hash } = await saveBtcAddressContract.writeAsync({
+                    args: [address, stringToHex(btcAddress)],
+                });
+
+                await waitForTransaction({ hash });
+
+                dispatch(mintActions.setMintTransactionBtcAddress(btcAddress));
+
+                navigate('?modal=success');
+            } catch (err: any) {
+                console.log(err, JSON.stringify(err));
+                navigate('?modal=error');
+            }
+        },
+        [address, saveBtcAddressContract, navigate, dispatch],
+    );
+
     return (
         <DynamicWalletContext.Provider
             value={{
@@ -260,6 +285,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                 evmNetworks,
                 evmNetwork,
                 mint,
+                saveBtcAddress,
             }}
         >
             {children}

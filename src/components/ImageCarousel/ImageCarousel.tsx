@@ -94,10 +94,9 @@ const ImageCarouselItem = () => {
                     </div>
 
                     <div className={CnImageCarouselItem('description')}>
-                        Minter OG Badges, with 300 Ordinals, begin with an
-                        initial batch of 100 representing the Minter Testnet.
-                        They'll be raffled for everyone to have a chance to
-                        acquire them.
+                        MINTER WL PASS. Mint a free pass on any testnet to win
+                        one of 300 WLs for $OXMI. See what the future of BRC
+                        looks like and test your luck!
                     </div>
 
                     <div className={CnImageCarouselItem('action')}>

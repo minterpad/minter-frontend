@@ -1,5 +1,6 @@
 import { ReactComponent as Logo } from './images/logo.svg';
 import { ReactComponent as Error } from './images/error.svg';
+import { ReactComponent as Success } from './images/success.svg';
 
 import { ReactComponent as AngleLeft } from './icons/angle-left.svg';
 import { ReactComponent as AngleRight } from './icons/angle-right.svg';
@@ -69,4 +70,5 @@ export const Icons = {
     Usdt,
     Eth,
     Error,
+    Success,
 };

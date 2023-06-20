@@ -126,6 +126,14 @@
 
         margin-bottom: 20px;
 
+        &-action {
+            width: 100%;
+
+            & .button {
+                width: 100%;
+            }
+        }
+
         & .select-wrapper {
             width: calc(50% - 6px);
         }
