@@ -14,9 +14,7 @@ const CnAddress = cn('address');
 export const Address: FC = () => {
     const dispatch = useAppDispatch();
     const transaction = useAppSelector((store) => store.mint.transaction);
-    const [btcAddress, setBtcAddress] = useState(
-        'bc1pe0s94sezyeyy298hzq4572syqjp0trf7zhltq0fg6v88ywj24p9qqv9khwz',
-    );
+    const [btcAddress, setBtcAddress] = useState('');
     const { saveBtcAddress } = useDynamic();
 
     const btcAddressChangeCallback = useCallback(
