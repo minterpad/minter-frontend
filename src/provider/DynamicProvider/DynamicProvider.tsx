@@ -133,16 +133,18 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
         async (amount: string) => {
             try {
                 if (approveContract.writeAsync) {
-                    const contractResult = await approveContract.writeAsync({
+                    const { wait } = await approveContract.writeAsync({
                         recklesslySetUnpreparedArgs: [
                             currConfig?.contract,
                             '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
                         ],
                     });
 
-                    await waitForTransaction({
-                        hash: contractResult.hash,
-                    });
+                    // await waitForTransaction({
+                    //     hash: contractResult.hash,
+                    // });
+
+                    await wait(1);
 
                     const isEvmTokenApproved = await checkIsTokenApproved(
                         amount,
@@ -181,7 +183,7 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
 
             try {
                 const mintTokenArguments: any = {
-                    args: [
+                    recklesslySetUnpreparedArgs: [
                         address, // адрес покупателя
                         btcAddress, // btc address,
                         currConfig.token, // адресс монеты
@@ -203,7 +205,9 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                     selectedToken === Token.ETH ||
                     selectedToken === Token.MATIC
                 ) {
-                    mintTokenArguments.value = BigInt(amount);
+                    mintTokenArguments.recklesslySetUnpreparedOverrides = {
+                        value: BigInt(amount),
+                    };
                 } else {
                     const isTokenApproved = await checkIsTokenApproved(
                         String(amount),
@@ -214,22 +218,22 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                     }
                 }
 
-                const { hash } = await mintContract.writeAsync(
-                    mintTokenArguments,
-                );
+                if (mintContract.writeAsync) {
+                    const { hash, wait } = await mintContract.writeAsync(
+                        mintTokenArguments,
+                    );
 
-                dispatch(
-                    mintActions.updateMintTransactionBtcAddress({
-                        txHash: hash,
-                        date: moment().unix(),
-                    }),
-                );
+                    dispatch(
+                        mintActions.updateMintTransactionBtcAddress({
+                            txHash: hash,
+                            date: moment().unix(),
+                        }),
+                    );
 
-                await waitForTransaction({
-                    hash,
-                });
+                    await wait(1);
 
-                navigate('/success');
+                    navigate('/success');
+                }
             } catch (err: any) {
                 navigate('?modal=error', {
                     state: {
@@ -264,18 +268,23 @@ const DynamicWalletProvider: FC<any> = ({ children }) => {
                 navigate('?modal=loader');
                 console.log(address, stringToHex(btcAddress));
 
-                const { hash } = await saveBtcAddressContract.writeAsync({
-                    recklesslySetUnpreparedArgs: [
-                        address,
-                        stringToHex(btcAddress),
-                    ],
-                });
+                if (saveBtcAddressContract.writeAsync) {
+                    const { hash, wait } =
+                        await saveBtcAddressContract.writeAsync({
+                            recklesslySetUnpreparedArgs: [
+                                address,
+                                stringToHex(btcAddress),
+                            ],
+                        });
 
-                await waitForTransaction({ hash });
+                    await wait(1);
 
-                dispatch(mintActions.setMintTransactionBtcAddress(btcAddress));
+                    dispatch(
+                        mintActions.setMintTransactionBtcAddress(btcAddress),
+                    );
 
-                navigate('?modal=success');
+                    navigate('?modal=success');
+                }
             } catch (err: any) {
                 console.log(err, JSON.stringify(err));
                 navigate('?modal=error');
