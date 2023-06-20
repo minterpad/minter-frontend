@@ -1,12 +1,35 @@
 import { cn } from '@bem-react/classname';
 import { PageLayout } from 'layouts';
-import { Banner, Cohorts, Form } from './components';
+import { Banner, Cohorts, CohortsTimer, Form } from './components';
 import { Icons } from 'assets';
-import { Timer } from 'components';
-
-import './Mint.scss';
 import { FC, memo, useCallback, useState } from 'react';
 import { mintTimestamp } from 'conts';
+
+import './Mint.scss';
+
+const chortsItems = [
+    {
+        cohort: 'OG',
+        price: 'FREE',
+        limit: '-',
+        start: 1687262400,
+        end: 1687348800,
+    },
+    {
+        cohort: 'WL',
+        price: 'FREE',
+        limit: '-',
+        start: 1687348800,
+        end: 1687435200,
+    },
+    {
+        cohort: 'PUBLIC',
+        price: 'FREE',
+        limit: '-',
+        start: 1687435200,
+        end: 1690027200,
+    },
+];
 
 const CnMint = cn('mint');
 
@@ -77,14 +100,10 @@ export const Mint: React.FC<IMintProps> = () => {
                         </div>
                     </div>
 
-                    <div className={CnMint('timer')}>
-                        <div className={CnMint('timer-title')}>
-                            Minter WL Passes comprises:
-                        </div>
-                        <Timer deadline={mintTimestamp} />
-                    </div>
+                    <CohortsTimer cohorts={chortsItems} />
+
                     <div className={CnMint('cohorts')}>
-                        <Cohorts />
+                        <Cohorts cohorts={chortsItems} />
                     </div>
                 </div>
 
