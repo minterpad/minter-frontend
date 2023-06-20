@@ -96,7 +96,7 @@ export const Mint: React.FC<IMintProps> = () => {
                             <div className={CnMint('stat-label')}>
                                 total mints:
                             </div>
-                            <div className={CnMint('stat-value')}>321</div>
+                            <div className={CnMint('stat-value')}>3582</div>
                         </div>
                     </div>
 

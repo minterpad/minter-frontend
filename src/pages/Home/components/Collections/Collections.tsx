@@ -112,7 +112,7 @@ export const Collections: React.FC<ICollectionsProps> = () => {
                             </div>
                         </td>
                         <td>21.06.2023</td>
-                        <td>3400</td>
+                        <td>3582</td>
                         <td>NO limit</td>
                     </tr>
                     <tr>
