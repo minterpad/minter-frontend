@@ -27,7 +27,7 @@ const baseTxnFee = 0.000002;
 
 export const Form: React.FC<IFormProps> = () => {
     const dispatch = useAppDispatch();
-    const { evmNetwork } = useDynamic();
+    const { evmNetwork, address } = useDynamic();
     const [mintCount, setMintCount] = useState(1);
     const [tokensPrice, setTokensPrice] = useState<any>(null);
     const selectedToken = useAppSelector((store) => store.mint.selectedToken);
@@ -216,6 +216,7 @@ export const Form: React.FC<IFormProps> = () => {
                 <div className={CnForm('action')}>
                     <Link to="?modal=provideAddress">
                         <Button
+                            disabled={!evmNetwork}
                             onClick={mintClickCallback}
                             view="orange"
                             size="l"

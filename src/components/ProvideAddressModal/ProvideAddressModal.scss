@@ -133,6 +133,10 @@
 
                     color: #FFFFFF;
 
+                    &:hover {
+                        color: rgba(255, 255, 255, 0.6);
+                    }
+
                     @media screen and (max-width: 600px) {
                         & br {
                             display: none;
