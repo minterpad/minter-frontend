@@ -12,6 +12,10 @@
         color: #FFFFFF;
 
         margin-bottom: 24px;
+
+        @media screen and (max-width: 600px) {
+            display: none;
+        }
     }
 
     &-content {
@@ -19,10 +23,24 @@
 
         display: flex;
         justify-content: center;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            align-items: center;
+        }
         
         &-left {
             width: 400px;
             margin-right: 24px;
+
+            @media screen and (max-width: 900px) {
+                margin-right: 0;
+                margin-bottom: 24px;
+            }
+
+            @media screen and (max-width: 600px) {
+                max-width: 100%;
+            }
 
             & .extensions {
                 margin-bottom: 20px;

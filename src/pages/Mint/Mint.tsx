@@ -100,6 +100,12 @@ export const Mint: React.FC<IMintProps> = () => {
                         </div>
                     </div>
 
+                    {window.innerWidth > 1200 ? null : (
+                        <div className={CnMint('form')}>
+                            <Form />
+                        </div>
+                    )}
+
                     <CohortsTimer cohorts={chortsItems} />
 
                     <div className={CnMint('cohorts')}>
@@ -107,9 +113,11 @@ export const Mint: React.FC<IMintProps> = () => {
                     </div>
                 </div>
 
-                <div className={CnMint('form')}>
-                    <Form />
-                </div>
+                {window.innerWidth < 1200 ? null : (
+                    <div className={CnMint('form')}>
+                        <Form />
+                    </div>
+                )}
             </div>
         </PageLayout>
     );

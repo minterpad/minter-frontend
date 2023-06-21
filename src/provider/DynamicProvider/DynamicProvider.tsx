@@ -6,7 +6,6 @@ import {
 } from '@dynamic-labs/sdk-react';
 import { DynamicWagmiConnector } from '@dynamic-labs/wagmi-connector';
 import { useContractWrite, useContractRead } from 'wagmi';
-import { waitForTransaction } from '@wagmi/core';
 import { config } from 'conts';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { EvmChains, Token } from 'types/enums';
@@ -309,6 +308,9 @@ export const DynamicProvider: FC<{ children?: any }> = ({ children }) => {
                 environmentId: 'eede3ed2-4511-4c6f-9643-4974ff61fae5',
                 initialAuthenticationMode: 'connect-only',
                 enableVisitTrackingOnConnectOnly: false,
+                cssOverrides: `.dynamic-widget-inline-controls {
+                    max-height: unset!important;
+                }`,
             }}
         >
             <DynamicWagmiConnector>

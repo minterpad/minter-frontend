@@ -340,10 +340,10 @@ const MintSelect = () => {
                     icon: (
                         <img
                             src={evmNetwork.iconUrls[0]}
-                            alt={evmNetwork.name}
+                            alt={evmNetwork.chainName}
                         />
                     ),
-                    title: evmNetwork.vanityName ?? evmNetwork.name,
+                    title: evmNetwork.vanityName ?? evmNetwork.chainName,
                 }}
                 items={networkItems}
             />

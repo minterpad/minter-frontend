@@ -6,6 +6,15 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
 
+    @media screen and (max-width: 900px) {
+        width: 400px;
+    }
+
+    @media screen and (max-width: 600px) {
+        max-width: 100%;
+        width: unset;
+    }
+
     &-nft {
         display: flex;
         align-items: center;

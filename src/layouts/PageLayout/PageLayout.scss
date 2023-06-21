@@ -5,4 +5,10 @@
     margin: 0 auto;
     
     padding: 0px 56px;
+
+    @media screen and (max-width: 500px) {
+        padding: 0px 23px;
+
+        max-width: 100%;
+    }
 }

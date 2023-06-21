@@ -16,10 +16,43 @@
     background-position: center center;
     background-size: cover;
 
+    @media screen and (max-width: 700px) {
+        height: 140px;
+    }
+
     &-image {
         position: absolute;
 
         left: 20px;
+
+        @media screen and (max-width: 1100px) {
+            top: 60%;
+
+            & img, svg {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            top: 70%;
+
+            & img, svg {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            top: 70%;
+
+            & img, svg {
+                width: 80px;
+                height: 80px;
+
+                border-radius: 12px;
+            }
+        }
     }
 
     &-title {
@@ -36,5 +69,9 @@
         color: #ED5729;
 
         text-shadow: 0px 0px 15px #ED5729;
+
+        @media screen and (max-width: 700px) {
+            font-size: 30px;
+        }
     }
 }
