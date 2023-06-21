@@ -26,9 +26,14 @@ export const Collections: React.FC<ICollectionsProps> = () => {
 const CnMobileCollections = cn('mobileCollections');
 
 const MobileCollections: FC = () => {
+    const navigate = useNavigate();
+
     return (
         <div className={CnMobileCollections()}>
-            <div className={CnMobileCollections('item')}>
+            <div
+                onClick={() => navigate('/mint')}
+                className={CnMobileCollections('item')}
+            >
                 <div className={CnMobileCollections('item-header')}>
                     <div className={CnMobileCollections('item-header')}>
                         <div className={CnMobileCollections('item-left')}>
@@ -149,7 +154,10 @@ const MobileCollections: FC = () => {
                     </div>
                 </div>
             </div>
-            <div className={CnMobileCollections('item')}>
+            <div
+                onClick={() => navigate('/mint')}
+                className={CnMobileCollections('item')}
+            >
                 <div className={CnMobileCollections('item-header')}>
                     <div className={CnMobileCollections('item-header')}>
                         <div className={CnMobileCollections('item-left')}>
