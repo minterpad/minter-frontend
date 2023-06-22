@@ -20,6 +20,33 @@
         height: 140px;
     }
 
+    &-socials {
+        position: absolute;
+
+        right: 16px;
+        top: 16px;
+
+        @media screen and (max-width: 700px) {
+            bottom: 12px;
+            right: 12px;
+            top: unset;
+        }
+
+        &-item {
+            cursor: pointer;
+
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+
+            background-color: rgba(14, 14, 14, 1);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
     &-image {
         position: absolute;
 

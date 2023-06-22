@@ -12,6 +12,8 @@ import { ReactComponent as Copy } from './icons/copy.svg';
 import { ReactComponent as Check } from './icons/check.svg';
 import { ReactComponent as ArrowRight } from './icons/arrow-right.svg';
 
+import { ReactComponent as Twitter } from './icons/twitter.svg';
+
 import { ReactComponent as Ethereum } from './networks/ethereum.svg';
 import { ReactComponent as Aptos } from './networks/aptos.svg';
 import { ReactComponent as Sui } from './networks/sui.svg';
@@ -71,4 +73,5 @@ export const Icons = {
     Eth,
     Error,
     Success,
+    Twitter,
 };

@@ -63,6 +63,7 @@ export const Address: FC = () => {
             {!transaction?.btcAddress && (
                 <div className={CnAddress('action')}>
                     <Button
+                        disabled={!btcAddress}
                         onClick={buttonClickCallback}
                         view="orange"
                         size="l"
