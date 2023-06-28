@@ -11,6 +11,9 @@ import { ReactComponent as Close } from './icons/close.svg';
 import { ReactComponent as Copy } from './icons/copy.svg';
 import { ReactComponent as Check } from './icons/check.svg';
 import { ReactComponent as ArrowRight } from './icons/arrow-right.svg';
+import { ReactComponent as Exclamation } from './icons/exclamation.svg';
+import { ReactComponent as Complete } from './icons/complete.svg';
+import { ReactComponent as Failed } from './icons/failed.svg';
 
 import { ReactComponent as Twitter } from './icons/twitter.svg';
 
@@ -74,4 +77,7 @@ export const Icons = {
     Error,
     Success,
     Twitter,
+    Exclamation,
+    Complete,
+    Failed,
 };

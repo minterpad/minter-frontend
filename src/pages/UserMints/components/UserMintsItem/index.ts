@@ -1,1 +1,1 @@
-export { UserMintsItemItem } from './UserMintsItem';
+export { UserMintsItem } from './UserMintsItem';

@@ -11,7 +11,7 @@ interface IButtonProps
         HTMLButtonElement
     > {
     view: 'orange' | 'dark';
-    size: 'm' | 'l';
+    size: 'm' | 'l' | 's';
 }
 
 export const Button: React.FC<IButtonProps> = ({ view, size, ...props }) => {

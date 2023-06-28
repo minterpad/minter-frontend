@@ -4,4 +4,16 @@
         flex-direction: column;
         align-items: center;
     }
+
+    & .title {
+        margin-bottom: 32px;
+    }
+
+    &-list {
+        & .userMintsItem {
+            &:not(:last-child) {
+                margin-bottom: 24px;
+            }
+        }
+    }
 }
