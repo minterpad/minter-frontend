@@ -10,3 +10,4 @@ export { Input } from './Input';
 export { LoaderModal } from './LoaderModal';
 export { ErrorModal } from './ErrorModal';
 export { SuccessModal } from './SuccessModal';
+export { Title } from './Title';

@@ -1,0 +1,1 @@
+export { UserMintsItemItem } from './UserMintsItem';
