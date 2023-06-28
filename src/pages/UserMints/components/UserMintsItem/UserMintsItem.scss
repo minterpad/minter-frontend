@@ -1,0 +1,172 @@
+.userMintsItem {
+    width: 768px;
+
+    border-radius: 8px;
+    border: 1px solid #3E3E3E;
+    background: #0E0E0E;
+
+    overflow: hidden;
+
+    &-head {
+        padding: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    &-nft {
+        display: flex;
+        align-items: center;
+
+        &-image {
+            display: flex;
+
+            margin-right: 20px;
+
+            & svg, img {
+                width: 92px;
+                height: 92px;
+            }
+        }
+
+        &-head {
+            display: flex;
+            align-items: center;
+
+            margin-bottom: 16px;
+        }
+
+        &-count {
+            margin-right: 8px;
+
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: #1D1D1D;
+
+            padding: 8px 10px;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            color: #FFF;
+        }
+
+        &-name {
+            font-size: 16px;
+
+            color: #FFF;
+        }
+
+        &-info {
+           
+        }
+
+        &-price {
+            display: flex;
+            align-items: center;
+
+            &-chain {
+                display: flex;
+
+                margin-right: 8px;
+
+                & svg, img {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+
+            &-value {
+                font-size: 14px;
+
+                color: rgba(255, 255, 255, 0.60);
+            }
+        }
+    }
+
+    &-status {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        &-title {
+            display: flex;
+            align-items: center;
+
+            font-family: "Videotype";
+            font-size: 14px;
+
+            color: #FFF;
+
+            margin-bottom: 8px;
+
+            & svg, img {
+                margin-right: 8px;
+            }
+
+            &_complete {
+                color: #FF7A00;
+            }
+
+            &_failed {
+                color: #FF2828;
+            }
+        }
+
+        &-subtitle {
+            font-family: "Videotype";
+
+            font-size: 12px;
+            text-align: right;
+
+            color: rgba(255, 255, 255, 0.60);
+        }
+
+        & .button {
+            display: flex;
+            align-items: center;
+
+            margin-bottom: 12px;
+
+            & svg {
+                margin-right: 8px;
+            }
+        }
+    }
+
+    &-info {        
+        display: flex;
+        justify-content: space-between;
+
+        background: #1D1D1D;
+
+        padding: 16px 20px;
+
+        &-item {
+            &_right {
+                text-align: right;
+            }
+        }
+
+        &-text {
+            font-size: 14px;
+
+            color: #FFF;
+
+            &_red {
+                color: #FF2828;
+            }
+        }
+
+        &-title {
+            font-size: 12px;
+            text-transform: uppercase;
+
+            color: rgba(255, 255, 255, 0.60);
+
+            margin-bottom: 8px;
+        }
+    }
+}

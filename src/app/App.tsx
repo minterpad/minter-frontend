@@ -1,4 +1,4 @@
-import { Home, Mint, TransactionSuccess } from 'pages';
+import { Home, Mint, TransactionSuccess, UserMints } from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Modal } from 'components';
 import { Provider } from 'react-redux';
@@ -23,6 +23,8 @@ export const App = () => {
                                 path="/success"
                                 element={<TransactionSuccess />}
                             />
+
+                            <Route path="/user/mints" element={<UserMints />} />
                         </Routes>
                     </div>
                 </DynamicProvider>
